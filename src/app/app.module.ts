@@ -4,10 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { GroupsManagementComponent } from './components/groups-management/groups-management.component';
+import { ListGroupComponent } from './components/groups-management/list-group/list-group/list-group.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GroupsManagementComponent,
+    ListGroupComponent
   ],
   imports: [
     BrowserModule,
