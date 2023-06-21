@@ -1,0 +1,21 @@
+<h3>Update Group</h3>
+<div style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-offre">
+      <label for="name">Title</label>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="offre.titre" name="name">
+    </div>
+    <div class="form-offre">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="description" required [(ngModel)]="offre.description" name="name">
+    </div>
+    <div class="form-offre">
+      <label for="nombre">total Members</label>
+      <input type="number" class="form-control" id="nombre" required [(ngModel)]="offre.nombreTotal" name="name">
+    </div>
+
+
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

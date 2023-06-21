@@ -4,6 +4,6 @@ export class Offre {
   id!:number
   titre!:string
   description!:string
-  nombreManquant!:number
+  nombreTotal!:number
   group!:Group
 }

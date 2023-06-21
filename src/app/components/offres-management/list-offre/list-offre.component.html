@@ -1,15 +1,16 @@
 <div class="container mt-4 ">
   <div class="row ">
-  <div class="col-md-4 col-sm-2 col-12" *ngFor="let g of listGroup">
+  <div class="col-md-4 col-sm-2 col-12" *ngFor="let g of listOffre">
   <div  class="card" style="width: 18rem;">
     <img src="" class="card-img-top" alt="...">
 
     <div class="card-body">
-      <h5 class="card-title">title : {{g.name}}</h5>
-      <p class="card-text">Activity : {{g.activities}}</p>
-      <button (click)="deleteGroup(g.id)" class="btn btn-danger">Delete</button>
-      <button (click)="updateGroup(g.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
-      <button (click)="groupDetails(g.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+      <h5 class="card-title">title : {{g.titre}}</h5>
+      <p class="card-text">Description : {{g.description}}</p>
+      <p class="card-text">Total number : {{g.nombreTotal}}</p>
+      <button (click)="deleteOffre(g.id)" class="btn btn-danger">Delete</button>
+      <button (click)="updateOffre(g.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+      <button (click)="offreDetails(g.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
 
       <!-- <button  class="btn btn-primary" (click)="buy(product)" [disabled]="product.quantity==0" style="width: 40pt; ">Buy</button>
       <button  class="btn btn-success ml-2" (click)="like(product)" style="width: 60pt; margin-left: 10pt;">Like</button>
