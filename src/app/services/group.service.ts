@@ -16,11 +16,14 @@ export class GroupService {
   addGroup(group:Group):Observable<any>{
     return this.http.post<Group>(this.groupUrl +'/addGroup',group)
   }
-  deleteGroup (group: Group | number):Observable<Group> {
-    const id = typeof group === 'number' ? group : group.id; const url=this.groupUrl+'/deleteGroup'+id;
+  deleteGroup (id: number):Observable<Group> {
+     const url=this.groupUrl+'/deleteGroup/'+id;
     return this.http.delete<Group>(url);
   }
   updateGroup (id: number, group: Group): Observable<Group> {
     return this.http.put<Group>(this.groupUrl+'/updateGroup'+ id, group);
+  }
+  getGroupById (id: number): Observable<Group> {
+    return this.http.get<Group>(this.groupUrl+'/getGroupById/'+ id);
   }
 }
