@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'update/:id', component: UpdateGroupComponent },
   { path: 'details/:id', component: DetailsGroupComponent },
   {path: 'offers', component:ListOffreComponent},
-  {path: 'addOffre', component:AddOffreComponent},
+  { path: 'groups/:groupId/offre', component: AddOffreComponent },
   { path: 'updateOffre/:id', component: UpdateOffreComponent },
   { path: 'offreDetails/:id', component: DetailsOffreComponent },
   // {path: '**',component:ListGroupComponent}

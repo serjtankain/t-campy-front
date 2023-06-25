@@ -18,6 +18,7 @@ export class UpdateGroupComponent implements OnInit {
     ngOnInit() {
       this.group = new Group();
 
+
       this.id = this.route.snapshot.params['id'];
 
       this.groupService.getGroupById(this.id)
@@ -26,16 +27,33 @@ export class UpdateGroupComponent implements OnInit {
           this.group = data;
         }, error => console.log(error));
     }
+    addActivity() {
+      this.group.activities.push({id:null, name: '', description: '' });
+    }
 
     updateGroup() {
-      this.groupService.updateGroup(this.id, this.group)
+
+      this.groupService.updateGroup( this.group)
         .subscribe(data => {
           console.log(data);
-          this.group = new Group();
+
           this.gotoList();
         }, error => console.log(error));
     }
+    // deleteActivity(index: number) {
+    //   this.group.activities.splice(index, 1);
+    // }
+    deleteActivity(groupId: number, activityId: number) {
+      this.groupService.deleteActivity(groupId, activityId).subscribe(
+        () => {
+          console.log('Activity deleted successfully');
 
+        },
+        error => {
+          console.log('Error deleting activity:', error);
+        }
+      );
+    }
     onSubmit() {
       this.updateGroup();
     }
@@ -43,6 +61,6 @@ export class UpdateGroupComponent implements OnInit {
     gotoList() {
       this.router.navigate(['/groups']);
     }
-  
+
 
 }

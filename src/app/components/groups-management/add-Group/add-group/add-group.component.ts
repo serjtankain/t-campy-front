@@ -17,32 +17,46 @@ export class AddGroupComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.groupForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      activities: this.formBuilder.array([])
-    });
+    // this.groupForm = this.formBuilder.group({
+    //   name: ['', Validators.required],
+    //   // activities: this.formBuilder.array([])
+    // });
   }
   addGroup(){
     console.log(this.group);
+    if (!this.group.activities) {
+      this.group.activities = [];
+    }
 
     this.groupService.addGroup(this.group).subscribe(
       {
-        next: () => this.router.navigate(['/groups']),
+        next: () => this.router.navigate(['groups']),
       }
     )
 
   }
+  // addActivity() {
+
+  //   const activityForm = this.formBuilder.group({
+  //     name: ['', Validators.required],
+  //     description: ['', Validators.required],
+
+  //   });
+
+  //   this.activities.push(activityForm);
+  // }
   addActivity() {
-
-    const activityForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-
-    });
-
-    this.activities.push(activityForm);
+    if (!this.group.activities) {
+      this.group.activities = [];
+    }
+    this.group.activities.push({ id:0,name: '', description: '' });
   }
-
+  // deleteActivity(index: number) {
+  //   this.activities.removeAt(index);
+  // }
+  deleteActivity(index: number) {
+    this.group.activities.splice(index, 1);
+  }
 
   get activities() {
     return this.groupForm.get('activities') as FormArray;
