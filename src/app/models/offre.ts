@@ -5,5 +5,5 @@ export class Offre {
   titre!:string
   description!:string
   nombreTotal!:number
-  group!:Group
+
 }

@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Group } from 'src/app/models/group';
 import { GroupService } from 'src/app/services/group.service';
@@ -10,10 +10,13 @@ import { GroupService } from 'src/app/services/group.service';
 })
 export class ListGroupComponent implements OnInit {
 listGroup:Group[]= [];
+groupId!:number
   constructor(private groupeService:GroupService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
+    this.groupId=this.route.snapshot.params['groupId'];
     this.getGroups();
   }
   getGroups(){
@@ -35,7 +38,13 @@ listGroup:Group[]= [];
     this.router.navigate(['details', id]);
   }
   updateGroup(id: number){
-    this.router.navigate(['details', id]);
+    this.router.navigate(['update', id]);
+  }
+  // openAddOffre() {
+  //   this.router.navigate(['groups', this.groupId, 'offres', 'add']);
+  // }
+  addOffreToGroup(groupId: number): void {
+    this.router.navigate(['groups', groupId,'offre']);
   }
 
 }

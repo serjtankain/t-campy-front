@@ -1,4 +1,4 @@
-<form #f="ngForm" (ngSubmit)="addOffre()" >
+<form #f="ngForm" (ngSubmit)="saveOffre()" >
   <div class="form-group">
     <label for="titre" class="form-label mt-2">Titre</label>
     <input type="text" class="form-control" name="titre" [(ngModel)]="offre.titre" required minlength="3" #title="ngModel">
