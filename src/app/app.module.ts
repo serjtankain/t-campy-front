@@ -16,6 +16,8 @@ import { ListOffreComponent } from './components/offres-management/list-offre/li
 import { UpdateOffreComponent } from './components/offres-management/update-offre/update-offre.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MatDialogModule } from '@angular/material/dialog';
+import { LoginComponent } from './components/login/login.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import {  MatDialogModule } from '@angular/material/dialog';
     AddOffreComponent,
     ListOffreComponent,
     UpdateOffreComponent,
+    LoginComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
