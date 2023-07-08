@@ -14,6 +14,8 @@ import { DetailsOffreComponent } from './components/offres-management/details-of
 import { AddOffreComponent } from './components/offres-management/add-offre/add-offre.component';
 import { ListOffreComponent } from './components/offres-management/list-offre/list-offre.component';
 import { UpdateOffreComponent } from './components/offres-management/update-offre/update-offre.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {  MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -34,9 +36,13 @@ import { UpdateOffreComponent } from './components/offres-management/update-offr
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Group } from 'src/app/models/group';
 import { Offre } from 'src/app/models/offre';
+import { GroupService } from 'src/app/services/group.service';
 import { OffreService } from 'src/app/services/offre.service';
 
 @Component({
@@ -11,8 +13,10 @@ import { OffreService } from 'src/app/services/offre.service';
 export class ListOffreComponent implements OnInit {
 
   listOffre:Offre[]= [];
+  groupe!:Group
   constructor(private offreeService:OffreService,
-    private router: Router) { }
+    private router: Router,
+    private groupService:GroupService) { }
 
   ngOnInit(): void {
     this.getOffres();

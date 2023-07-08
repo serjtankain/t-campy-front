@@ -12,17 +12,22 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddGroupComponent implements OnInit {
   group:Group = new Group();
   groupForm!: FormGroup;
+
   constructor(private groupService:GroupService,
     private router :Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder) {
+
+    }
 
   ngOnInit(): void {
     // this.groupForm = this.formBuilder.group({
     //   name: ['', Validators.required],
     //   // activities: this.formBuilder.array([])
     // });
+
   }
   addGroup(){
+
     console.log(this.group);
     if (!this.group.activities) {
       this.group.activities = [];
@@ -35,6 +40,8 @@ export class AddGroupComponent implements OnInit {
     )
 
   }
+
+
   // addActivity() {
 
   //   const activityForm = this.formBuilder.group({
@@ -61,4 +68,5 @@ export class AddGroupComponent implements OnInit {
   get activities() {
     return this.groupForm.get('activities') as FormArray;
   }
+
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Offre } from 'src/app/models/offre';
 import { GroupService } from 'src/app/services/group.service';
@@ -22,14 +23,16 @@ export class AddOffreComponent implements OnInit {
 
   constructor(private groupService:GroupService,
     private router :Router,
-    private route: ActivatedRoute,) {
+    private route: ActivatedRoute,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
     }
 
   ngOnInit(): void {
     // this.groupId=this.route.snapshot.params['groupId'];
-    this.route.params.subscribe(params => {
-      this.groupId = params['groupId'];
-    });
+    this.groupId = this.data.id;
+    // this.route.params.subscribe(params => {
+    //   this.groupId = params['groupId'];
+    // });
   }
   // addOffre(){
   //   console.log(this.offre);

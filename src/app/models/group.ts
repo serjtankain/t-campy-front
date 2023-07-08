@@ -8,4 +8,5 @@ export class Group {
   activities!:Activity[]
   offres!:Offre[]
   reservations!:Reservation[]
+  image!:any
 }
