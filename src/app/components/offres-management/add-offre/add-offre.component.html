@@ -25,14 +25,14 @@
   </div>
   <div class="form-group">
     <label for="nombre" class="form-label mt-2">Nombre manquant</label>
-    <input type="text" class="form-control" name="nombre" [(ngModel)]="offre.nombreTotal" required minlength="3" #nombreManquant="ngModel">
+    <input type="text" class="form-control" name="nombre" [(ngModel)]="offre.nombreTotal" required  #nombreManquant="ngModel">
     <div *ngIf="nombreManquant.invalid  && nombreManquant.touched">
       <div  *ngIf="nombreManquant.errors?.['required']" >
         title is required.
       </div>
-      <div *ngIf="nombreManquant.errors?.['minlength']"  >
+      <!-- <div *ngIf="nombreManquant.errors?.['minlength']"  >
         title must be atleast 3 characters
-      </div>
+      </div> -->
    </div>
   </div>
   <!-- <div class="form-group">

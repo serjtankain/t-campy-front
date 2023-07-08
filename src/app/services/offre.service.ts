@@ -21,7 +21,7 @@ export class OffreService {
     return this.http.delete<Offre>(url);
   }
   updateOffre (id: number, offre: Offre): Observable<Offre> {
-    return this.http.put<Offre>(this.offreUrl+'/updateOffre'+ id, offre);
+    return this.http.put<Offre>(this.offreUrl+'/updateOffre/'+ id, offre);
   }
   getOffreById (id: number): Observable<Offre> {
     return this.http.get<Offre>(this.offreUrl+'/getOffreById/'+ id);
