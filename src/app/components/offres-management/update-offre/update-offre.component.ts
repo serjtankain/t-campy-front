@@ -17,7 +17,7 @@ export class UpdateOffreComponent implements OnInit {
     private offreService: OffreService) { }
 
     ngOnInit() {
-      this.offre = new Offre();
+      // this.offre = new Offre();
 
       this.id = this.route.snapshot.params['id'];
 
@@ -25,16 +25,17 @@ export class UpdateOffreComponent implements OnInit {
         .subscribe(data => {
           console.log(data)
           this.offre = data;
-        }, error => console.log(error));
+        });
     }
 
     updateOffre() {
-      this.offreService.updateOffre(this.id, this.offre)
+      
+      this.offreService.updateOffre( this.offre)
         .subscribe(data => {
           console.log(data);
-          this.offre = new Offre();
+
           this.gotoList();
-        }, error => console.log(error));
+        });
     }
 
     onSubmit() {
@@ -42,6 +43,6 @@ export class UpdateOffreComponent implements OnInit {
     }
 
     gotoList() {
-      this.router.navigate(['/offres']);
+      this.router.navigate(['/offers']);
     }
 }

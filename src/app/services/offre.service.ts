@@ -20,8 +20,8 @@ export class OffreService {
     const id = typeof offre === 'number' ? offre : offre.id; const url=this.offreUrl+'/deleteOffre/'+id;
     return this.http.delete<Offre>(url);
   }
-  updateOffre (id: number, offre: Offre): Observable<Offre> {
-    return this.http.put<Offre>(this.offreUrl+'/updateOffre/'+ id, offre);
+  updateOffre ( offre: Offre): Observable<Offre> {
+    return this.http.put<Offre>(this.offreUrl+'/updateOffre', offre);
   }
   getOffreById (id: number): Observable<Offre> {
     return this.http.get<Offre>(this.offreUrl+'/getOffreById/'+ id);
