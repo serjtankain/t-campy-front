@@ -8,8 +8,18 @@ import { ListOffreComponent } from './components/offres-management/list-offre/li
 import { AddOffreComponent } from './components/offres-management/add-offre/add-offre.component';
 import { UpdateOffreComponent } from './components/offres-management/update-offre/update-offre.component';
 import { DetailsOffreComponent } from './components/offres-management/details-offre/details-offre.component';
+<<<<<<< Updated upstream
 import { AdminComponent } from './components/admin/admin.component';
 import { LoginComponent } from './components/login/login.component';
+=======
+import { AddUserComponent } from './user-managment/add-user/add-user.component';
+import { UpdateUserComponent } from './user-managment/update-user/update-user.component';
+import { ListUserComponent } from './user-managment/list-user/list-user.component';
+import { AddReservationComponent } from './reservation-management/add-reservation/add-reservation.component';
+import { ListReservationComponent } from './reservation-management/list-reservation/list-reservation.component';
+import { UpdateReservationComponent } from './reservation-management/update-reservation/update-reservation.component';
+import { PopComponent } from './pop/pop.component';
+>>>>>>> Stashed changes
 
 const routes: Routes = [
   {path: '', redirectTo:'groups',pathMatch:'full'},
@@ -22,7 +32,14 @@ const routes: Routes = [
   {path: 'admin', component:AdminComponent},
   { path: 'groups/:groupId/offre', component: AddOffreComponent },
   { path: 'updateOffre/:id', component: UpdateOffreComponent },
+  {path: 'Users', component:ListUserComponent},                 
+  { path: 'AddUser', component: AddUserComponent },
+  { path: 'user/:id', component: UpdateUserComponent },
+  {path: 'Reservations', component:ListReservationComponent},
+  { path: 'AddReservation', component: AddReservationComponent },
+  { path: 'Reservation/:id', component: UpdateReservationComponent },
   { path: 'offreDetails/:id', component: DetailsOffreComponent },
+  {path:"pop",component:PopComponent}
   // {path: '**',component:ListGroupComponent}
 ];
 

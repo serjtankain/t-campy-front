@@ -1,24 +1,61 @@
-import { NgModule } from '@angular/core';
+import { NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GroupsManagementComponent } from './components/groups-management/groups-management.component';
 import { ListGroupComponent } from './components/groups-management/list-group/list-group/list-group.component';
 import { AddGroupComponent } from './components/groups-management/add-Group/add-group/add-group.component';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DetailsGroupComponent } from './components/groups-management/details-group/details-group/details-group.component';
 import { UpdateGroupComponent } from './components/groups-management/update-Group/update-group/update-group.component';
 import { DetailsOffreComponent } from './components/offres-management/details-offre/details-offre.component';
 import { AddOffreComponent } from './components/offres-management/add-offre/add-offre.component';
 import { ListOffreComponent } from './components/offres-management/list-offre/list-offre.component';
 import { UpdateOffreComponent } from './components/offres-management/update-offre/update-offre.component';
+<<<<<<< Updated upstream
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
+=======
+import { UserManagmentComponent } from './user-managment/user-managment.component';
+import { AddUserComponent } from './user-managment/add-user/add-user.component';
+import { ListUserComponent } from './user-managment/list-user/list-user.component';
+import { UpdateUserComponent } from './user-managment/update-user/update-user.component';
+import { ReservationManagementComponent } from './reservation-management/reservation-management.component';
+import { AddReservationComponent } from './reservation-management/add-reservation/add-reservation.component';
+import { ListReservationComponent } from './reservation-management/list-reservation/list-reservation.component'; 
+import { UpdateReservationComponent } from './reservation-management/update-reservation/update-reservation.component'; 
+import { KeycloakService } from 'keycloak-angular';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { NavbarComponent } from './navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PopComponent } from './pop/pop.component';
+import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+>>>>>>> Stashed changes
 
+//   return () =>
+//    kcService.init({
+
+//       config: {
+//         url: 'http://localhost:8080/auth/',
+//         realm: 'AMANI',
+//         clientId:'camp',
+
+
+//       },
+//       initOptions: {
+//         onLoad: 'login-required',
+//         checkLoginIframe:                                                                                                                                                                                                                             true,
+
+//       },
+//     });
+// }
 
 @NgModule({
   declarations: [
@@ -32,8 +69,22 @@ import { AdminComponent } from './components/admin/admin.component';
     AddOffreComponent,
     ListOffreComponent,
     UpdateOffreComponent,
+<<<<<<< Updated upstream
     LoginComponent,
     AdminComponent,
+=======
+    UserManagmentComponent,
+    AddUserComponent,
+    ListUserComponent,
+    UpdateUserComponent,
+    ReservationManagementComponent,
+    AddReservationComponent,
+    ListReservationComponent,
+    UpdateReservationComponent,
+    NavbarComponent,
+    PopComponent,
+    
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
@@ -42,10 +93,28 @@ import { AdminComponent } from './components/admin/admin.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+<<<<<<< Updated upstream
     MatDialogModule
   ],
   providers: [
     
+=======
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatSelectModule
+
+ 
+  ],
+
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+  providers: [KeycloakService
+    // {provide : APP_INITIALIZER, deps : [KeycloakService],useFactory : Kcfactory, multi : true},
+>>>>>>> Stashed changes
   ],
   bootstrap: [AppComponent]
 })
