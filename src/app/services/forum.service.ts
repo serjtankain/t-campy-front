@@ -291,21 +291,53 @@ export class ForumService {
     return (await this.forums).filter((forum) => !forum.isOpened()) ?? [];
   }
 
+  // public async likeForum(forum: Forum) {
+  //   forum.like();
+  //   await this.http.put<Forum>(
+  //     'http://localhost:8089/forum/add-like-Forum/' + forum.getId(),
+  //     forum.toJson()
+  //   );
+  //   this.refreshPage();
+  // }
   public async likeForum(forum: Forum) {
-    forum.like();
-    await this.http.put<Forum>(
-      'http://localhost:8089/forum/add-like-Forum/' + forum.getId(),
-      forum.toJson()
-    );
+    try {
+      await this.http
+        .put(
+          'http://localhost:8089/forum/add-like-Forum/' + forum.getId(),
+          forum.toJson()
+        )
+        .subscribe((data) => {
+          this.fetchForumsFromServer();
+        });
+    } catch (error) {
+      console.log(error);
+      this.snackbar.open('Error while adding likes', 'Close', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3000,
+      });
+    }
     this.refreshPage();
   }
 
   public async dislikeForum(forum: Forum) {
-    forum.dislike();
-    await this.http.put<Forum>(
-      'http://localhost:8089/forum/add-dislike-Forum/' + forum.getId(),
-      forum.toJson()
-    );
+    try {
+      await this.http
+        .put(
+          'http://localhost:8089/forum/add-dislike-Forum/' + forum.getId(),
+          forum.toJson()
+        )
+        .subscribe((data) => {
+          this.fetchForumsFromServer();
+        });
+    } catch (error) {
+      console.log(error);
+      this.snackbar.open('Error while adding dislikes', 'Close', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3000,
+      });
+    }
     this.refreshPage();
   }
 
@@ -352,7 +384,7 @@ export class ForumService {
   }
 
   public async getRecentForums(): Promise<Forum[]> {
-    return (await this.forums).sort((a, b) => {
+    return  this.forums.sort((a, b) => {
       return (
         new Date(b.getCreationDate()).getTime() -
         new Date(a.getCreationDate()).getTime()
@@ -361,7 +393,7 @@ export class ForumService {
   }
 
   public async getPopularForums(): Promise<Forum[]> {
-    return (await this.forums).sort((a, b) => {
+    return this.forums.sort((a, b) => {
       return b.getLikes() - a.getLikes();
     });
   }

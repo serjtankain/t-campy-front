@@ -45,6 +45,7 @@ export class AuthService {
     return localStorage.getItem('Admin') === 'true';
   }
 
+
   public setAdmin(): void {
     localStorage.setItem('Admin', 'true');
   }

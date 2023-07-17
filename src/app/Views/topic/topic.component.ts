@@ -96,7 +96,9 @@ export class TopicComponent implements OnInit {
   public getForum() {
     return this.forum;
   }
-
+  public getCategory(){
+    return this.forum.getCategory();
+  }
   public getForumId() {
     return this.forum.getId();
   }
@@ -137,9 +139,11 @@ export class TopicComponent implements OnInit {
       });
     });
   }
-
+  isClicked = false;
   public like() {
+    
     this.forumService.likeForum(this.forum);
+    this.isClicked=true;
   }
 
   public dislike() {
@@ -162,4 +166,12 @@ export class TopicComponent implements OnInit {
     this.category = category.value;
     console.log('selected', this.category);
   }
+  
+  public isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
+   
+ 
+  
 }
