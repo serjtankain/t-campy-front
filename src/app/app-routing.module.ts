@@ -10,6 +10,8 @@ import { UpdateOffreComponent } from './components/offres-management/update-offr
 import { DetailsOffreComponent } from './components/offres-management/details-offre/details-offre.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProductComponent } from './components/shop/product/product.component';
+import { ShopyComponent } from './components/shop/shopy/shopy.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'groups',pathMatch:'full'},
@@ -23,6 +25,8 @@ const routes: Routes = [
   { path: 'groups/:groupId/offre', component: AddOffreComponent },
   { path: 'updateOffre/:id', component: UpdateOffreComponent },
   { path: 'offreDetails/:id', component: DetailsOffreComponent },
+  {path: 'Produit',component:ProductComponent},
+  {path:'Shop',component:ShopyComponent}
   // {path: '**',component:ListGroupComponent}
 ];
 

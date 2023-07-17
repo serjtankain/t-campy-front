@@ -18,6 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { ProductComponent } from './components/shop/product/product.component';
+import { ShopyComponent } from './components/shop/shopy/shopy.component';
+import { OrderComponent } from './components/shop/order/order.component';
+import { DetailOrderComponent } from './components/shop/detail-order/detail-order.component';
 
 
 @NgModule({
@@ -34,6 +38,10 @@ import { AdminComponent } from './components/admin/admin.component';
     UpdateOffreComponent,
     LoginComponent,
     AdminComponent,
+    ProductComponent,
+    ShopyComponent,
+    OrderComponent,
+    DetailOrderComponent,
   ],
   imports: [
     BrowserModule,
