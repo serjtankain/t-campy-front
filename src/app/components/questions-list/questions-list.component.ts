@@ -39,20 +39,32 @@ export class QuestionsListComponent {
   sort($event: any) {
     this.Status = $event.value;
     if (this.Status === 'recent') {
-      this.forumService.getRecentForums().then((Forums) => {
-        return (Forums as Forum[]) ? Forums : [];
-      });
+         this.forums.sort((a, b) => {
+          return (
+            new Date(b.getCreationDate()).getTime() -
+            new Date(a.getCreationDate()).getTime()
+          );
+          
+        });
+        
+      
     } else if (this.Status === 'popular') {
-      this.forumService.getPopularForums().then((Forums) => {
-        return (Forums as Forum[]) ? Forums : [];
+      
+        this.forums.sort((a, b) => {
+        return b.getLikes() - a.getLikes();
       });
+    
     } else if (this.Status === 'unanswered') {
-      this.forumService.getUnansweredForums().then((Forums) => {
-        return (Forums as Forum[]) ? Forums : [];
+      this.forumService.fetchForumsFromServer().then((forums) => {
+        this.forums = forums;
       });
+       this.forums.filter(
+        (forum) => forum.getFeedbacks().length === 0
+      );
+       
     } else {
-      this.forumService.fetchForumsFromServer().then((Forums) => {
-        return (Forums as Forum[]) ? Forums : [];
+      this.forumService.fetchForumsFromServer().then((forums) => {
+        return (forums as Forum[]) ? forums : [];
       });
     }
   }
