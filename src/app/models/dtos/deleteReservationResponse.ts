@@ -1,3 +1,3 @@
 export interface DeleteReservationResponse {
-    message: string;
+     message: string;
 }

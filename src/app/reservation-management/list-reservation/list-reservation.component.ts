@@ -77,7 +77,7 @@ export class ListReservationComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: Reservation) => {
       if (result != undefined) {
-        for (let i = 0; i < this.listofRes.length; i++) {
+         for (let i = 0; i < this.listofRes.length; i++) {
           if (this.listofRes[i].id == result.id) this.listofRes[i] = result;
         }
         this.listofRes = [...this.listofRes];

@@ -11,7 +11,7 @@ import { DeleteReservationResponse } from '../models/dtos/deleteReservationRespo
   providedIn: 'root',
 })
 export class ReservationService {
-  baseUrl: string = 'http://localhost:8090/api/reservation';
+   baseUrl: string = 'http://localhost:8090/api/reservation';
 
   constructor(private http: HttpClient) {}
   getAllReservation(): Observable<Reservation[]> {

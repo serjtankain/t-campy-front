@@ -79,7 +79,7 @@ export class AddReservationComponent implements OnInit {
       }
     );
   }
-  submit() {
+   submit() {
     if (this.data.type == 0 ) {
       this.createReservationDto.dateReservation = this.form.value['dateReservation'];
       this.createReservationDto.departureDate = this.form.value['departureDate'];

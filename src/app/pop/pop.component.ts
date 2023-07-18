@@ -24,6 +24,6 @@ export class PopComponent implements OnInit {
   }
 
   close(): void {
-    this.dialog.close();
+     this.dialog.close();
   }
 }
