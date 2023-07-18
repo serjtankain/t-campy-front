@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { KeycloakProfile } from 'keycloak-js';
 import { Router } from '@angular/router';
-import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-navbar',
@@ -11,11 +9,10 @@ import { KeycloakService } from 'keycloak-angular';
 export class NavbarComponent implements OnInit {
   firstname!:any;
 
-  constructor(private router:Router, private kservice:KeycloakService) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.kservice.loadUserProfile().then((profile:KeycloakProfile)=>
-    this.firstname=profile.username)
+   
   }
 
 }

@@ -8,10 +8,10 @@ import { ListOffreComponent } from './components/offres-management/list-offre/li
 import { AddOffreComponent } from './components/offres-management/add-offre/add-offre.component';
 import { UpdateOffreComponent } from './components/offres-management/update-offre/update-offre.component';
 import { DetailsOffreComponent } from './components/offres-management/details-offre/details-offre.component';
-<<<<<<< Updated upstream
 import { AdminComponent } from './components/admin/admin.component';
 import { LoginComponent } from './components/login/login.component';
-=======
+import { ProductComponent } from './components/shop/product/product.component';
+import { ShopyComponent } from './components/shop/shopy/shopy.component';
 import { AddUserComponent } from './user-managment/add-user/add-user.component';
 import { UpdateUserComponent } from './user-managment/update-user/update-user.component';
 import { ListUserComponent } from './user-managment/list-user/list-user.component';
@@ -19,8 +19,6 @@ import { AddReservationComponent } from './reservation-management/add-reservatio
 import { ListReservationComponent } from './reservation-management/list-reservation/list-reservation.component';
 import { UpdateReservationComponent } from './reservation-management/update-reservation/update-reservation.component';
 import { PopComponent } from './pop/pop.component';
->>>>>>> Stashed changes
-
 const routes: Routes = [
   {path: '', redirectTo:'groups',pathMatch:'full'},
   {path: 'groups', component:ListGroupComponent},
@@ -40,7 +38,7 @@ const routes: Routes = [
   { path: 'Reservation/:id', component: UpdateReservationComponent },
   { path: 'offreDetails/:id', component: DetailsOffreComponent },
   {path: 'Produit',component:ProductComponent},
-  {path:'Shop',component:ShopyComponent}
+  {path:'Shop',component:ShopyComponent},
   {path:"pop",component:PopComponent}
   // {path: '**',component:ListGroupComponent}
 ];
