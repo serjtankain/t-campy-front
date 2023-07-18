@@ -1,0 +1,51 @@
+<button class="btn btn-secondary" (click)="createReservation(0)"
+matTooltip="Info about the action">
+  <i class="material-icons">person_add</i> Add Reservation
+</button>
+
+<div class="center">
+  <br>
+  <br>
+  <br>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col" style="color: #5F97CD">#</th>
+        <th scope="col" style="color: #5F97CD">dateReservation</th>
+        <th scope="col" style="color: #5F97CD">departureDate</th>
+        <th scope="col" style="color: #5F97CD">Groups</th>
+        <th scope="col" style="color: #5F97CD">Location</th>
+        <th scope="col" style="color: #5F97CD">Operation</th>
+        <th scope="col" style="color: #5F97CD">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listofRes">
+        <td>{{ item.id }}</td>
+        <td>{{ item.dateReservation }}</td>
+        <td>{{ item.departureDate }}</td>
+        <td>{{ item.group.name }}</td>
+        <td>{{ item.localisation.name }}</td>
+        <td>
+          <span
+            (click)="removeReservation(item.id)"
+            class="material-icons-outlined"
+            style="color: red; cursor: pointer"
+          >
+            person_remove
+          </span>
+        </td>
+        <td>
+          <span
+            (click)="updateReservation(1, item)"
+            class="material-icons-outlined"
+            style="color: #17548E"
+          >
+            edit_note
+          </span>
+        </td>
+       
+      </tr>
+    </tbody>
+  </table>
+</div>

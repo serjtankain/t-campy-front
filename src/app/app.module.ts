@@ -44,6 +44,7 @@ import { DetailOrderComponent } from './components/shop/detail-order/detail-orde
     DetailOrderComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
