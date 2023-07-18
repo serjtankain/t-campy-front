@@ -18,34 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
-=======
-import { UserManagmentComponent } from './user-managment/user-managment.component';
-import { AddUserComponent } from './user-managment/add-user/add-user.component';
-import { ListUserComponent } from './user-managment/list-user/list-user.component';
-import { UpdateUserComponent } from './user-managment/update-user/update-user.component';
-import { ReservationManagementComponent } from './reservation-management/reservation-management.component';
-import { AddReservationComponent } from './reservation-management/add-reservation/add-reservation.component';
-import { ListReservationComponent } from './reservation-management/list-reservation/list-reservation.component'; 
-import { UpdateReservationComponent } from './reservation-management/update-reservation/update-reservation.component'; 
-import { KeycloakService } from 'keycloak-angular';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { NavbarComponent } from './navbar/navbar.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material/dialog';
-import { PopComponent } from './pop/pop.component';
-import { FormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
->>>>>>> Stashed changes
-
-//   return () =>
-//    kcService.init({
-
-//       config: {
-//         url: 'http://localhost:8080/auth/',
-//         realm: 'AMANI',
-//         clientId:'camp',
+import { ProductComponent } from './components/shop/product/product.component';
+import { ShopyComponent } from './components/shop/shopy/shopy.component';
+import { OrderComponent } from './components/shop/order/order.component';
+import { DetailOrderComponent } from './components/shop/detail-order/detail-order.component';
 
 
 //       },
@@ -72,19 +48,6 @@ import { MatSelectModule } from '@angular/material/select';
 <<<<<<< Updated upstream
     LoginComponent,
     AdminComponent,
-=======
-    UserManagmentComponent,
-    AddUserComponent,
-    ListUserComponent,
-    UpdateUserComponent,
-    ReservationManagementComponent,
-    AddReservationComponent,
-    ListReservationComponent,
-    UpdateReservationComponent,
-    NavbarComponent,
-    PopComponent,
-    
->>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,

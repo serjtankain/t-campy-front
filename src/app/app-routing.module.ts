@@ -39,6 +39,8 @@ const routes: Routes = [
   { path: 'AddReservation', component: AddReservationComponent },
   { path: 'Reservation/:id', component: UpdateReservationComponent },
   { path: 'offreDetails/:id', component: DetailsOffreComponent },
+  {path: 'Produit',component:ProductComponent},
+  {path:'Shop',component:ShopyComponent}
   {path:"pop",component:PopComponent}
   // {path: '**',component:ListGroupComponent}
 ];
