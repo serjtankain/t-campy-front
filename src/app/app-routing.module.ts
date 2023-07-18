@@ -17,7 +17,6 @@ import { UpdateUserComponent } from './user-managment/update-user/update-user.co
 import { ListUserComponent } from './user-managment/list-user/list-user.component';
 import { AddReservationComponent } from './reservation-management/add-reservation/add-reservation.component';
 import { ListReservationComponent } from './reservation-management/list-reservation/list-reservation.component';
-import { UpdateReservationComponent } from './reservation-management/update-reservation/update-reservation.component';
 import { PopComponent } from './pop/pop.component';
 const routes: Routes = [
   {path: '', redirectTo:'groups',pathMatch:'full'},
@@ -35,7 +34,6 @@ const routes: Routes = [
   { path: 'user/:id', component: UpdateUserComponent },
   {path: 'Reservations', component:ListReservationComponent},
   { path: 'AddReservation', component: AddReservationComponent },
-  { path: 'Reservation/:id', component: UpdateReservationComponent },
   { path: 'offreDetails/:id', component: DetailsOffreComponent },
   {path: 'Produit',component:ProductComponent},
   {path:'Shop',component:ShopyComponent},

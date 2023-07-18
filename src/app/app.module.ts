@@ -26,7 +26,6 @@ import { ListUserComponent } from './user-managment/list-user/list-user.componen
 import { ReservationManagementComponent } from './reservation-management/reservation-management.component';
 import { AddReservationComponent } from './reservation-management/add-reservation/add-reservation.component';
 import { ListReservationComponent } from './reservation-management/list-reservation/list-reservation.component'; 
-import { UpdateReservationComponent } from './reservation-management/update-reservation/update-reservation.component'; 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -76,7 +75,6 @@ import { UpdateUserComponent } from './user-managment/update-user/update-user.co
     ReservationManagementComponent,
     AddReservationComponent,
     ListReservationComponent,
-    UpdateReservationComponent,
     PopComponent,
    NavbarComponent 
 
@@ -88,7 +86,8 @@ import { UpdateUserComponent } from './user-managment/update-user/update-user.co
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   providers: [
     

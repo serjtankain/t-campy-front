@@ -1,106 +1,115 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup ,Validators} from '@angular/forms';
 import { Reservation } from 'src/app/models/reservation';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { Router } from '@angular/router';
-import { PopComponent } from 'src/app/pop/pop.component';
-import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { Group } from 'src/app/models/group';
 import { localisation } from 'src/app/models/localisation';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NgIf, NgForOf} from '@angular/common';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { CreateReservationDto } from 'src/app/models/dtos/createReservationDto';
+import { UpdateReservationDto } from 'src/app/models/dtos/updateReservationDto';
+import { GroupService } from 'src/app/services/group.service';
+import { HttpErrorResponse } from '@angular/common/http';
+
 @Component({
   selector: 'app-add-reservation',
   templateUrl: './add-reservation.component.html',
-  styleUrls: ['./add-reservation.component.css']
-  
+  styleUrls: ['./add-reservation.component.css'],
 })
 export class AddReservationComponent implements OnInit {
-
-ress!:Reservation[];
-res:Reservation=new Reservation()
-groupId!: number;
-groups: Group[] = [];
-localisations:localisation[]=[];
-localisation!:string;
-selectedGroupId!: number; 
-  resForm!: FormGroup;
+  reservations!: Reservation[];
+  createReservationDto : CreateReservationDto = {};
+  updateReservationDto : UpdateReservationDto = {};
+  groups: Group[] = [];
+  localisations: localisation[] = [];
+  form!: FormGroup;
   selectedLocation!: string;
-  // reservations:Reservation[]=[];
-  id:number=1;
-  constructor(private resservice:ReservationService,
-    private router : Router,
+
+  constructor(
+    private groupService: GroupService,
+    private reservationService: ReservationService,
+    private router: Router,
     private formBuilder: FormBuilder,
-    public dialog: MatDialog ) { }
-    
- ngOnInit(): void {
-  this.resForm = this.formBuilder.group({
-    name: ['', Validators.required],
-    activities: this.formBuilder.array([])
-  });
-  this.loadGroups();
-  this.getLocations();
-  this.resservice.getAllReservation()
-  .subscribe(reservations => this.ress = reservations);
- }
- 
-//  openDialog(): void {
-//   const dialogRef = this.dialog.open(UpdateUserComponent, {
-//     data: {name: this.name, animal: this.animal},
-//   });
+    public dialog: MatDialogRef<AddReservationComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    public data: { type: number; reservationToUpdate?: Reservation }
+  ) {}
 
-//   dialogRef.afterClosed().subscribe(result => {
-//     console.log('The dialog was closed');
-//     this.animal = result;
-//   });
-// }
- 
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      dateReservation: ['', Validators.required],
+      departureDate: ['', Validators.required],
+      group: ['', Validators.required],
+      localisation: ['', Validators.required],
+    });
+    this.loadGroups();
+    this.getLocations();
+    this.reservationService
+      .getAllReservation()
+      .subscribe((reservations) => (this.reservations = reservations));
 
-// getReservationsByGroupId(groupId: number) {
-//   this.resservice.getReservationsByGroupId(groupId)
-//     .subscribe(reservations => {
-//       this.ress = reservations;
-//       // Perform any additional processing or binding here
-//     });
-// }
-getLocations() {
-  this.resservice.getCampingLocation().subscribe(
-    (data:any) => {
-      this.localisations = data;
-      console.log(data);
-    },
-    (error) => {
-      console.log(error);
+    if (this.data.type == 1 && this.data.reservationToUpdate) {
+      this.form.patchValue({
+        dateReservation: this.data.reservationToUpdate.dateReservation,
+        departureDate: this.data.reservationToUpdate.departureDate,
+        group: this.data.reservationToUpdate.group.id,
+        localisation: this.data.reservationToUpdate.localisation.id,
+      });
     }
-  );
-}
+  }
 
+  getLocations() {
+    this.reservationService.getCampingLocation().subscribe(
+      (data: any) => {
+        this.localisations = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
-loadGroups() {
-  this.resservice.getGroups(this.id).subscribe(
-    (data: Group[]) => {
-      this.groups = data;
-      console.log(data);
-    },
-    (error) => {
-      console.error('Error retrieving groups:', error);
-    }
-  );
-}
-  AddReservation() {
-      // console.log(this.res);
-      this.resservice.createReservation(this.res).subscribe(
-        () => {
-        console.log(this.res)
-          
-          this.router.navigate(['/Reservations']);
+  loadGroups() {
+    this.groupService.getGroups().subscribe(
+      (data: Group[]) => {
+        this.groups = data;
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error retrieving groups:', error);
+      }
+    );
+  }
+  submit() {
+    if (this.data.type == 0 ) {
+      this.createReservationDto.dateReservation = this.form.value['dateReservation'];
+      this.createReservationDto.departureDate = this.form.value['departureDate'];
+      this.createReservationDto.group = this.form.value['group'];
+      this.createReservationDto.localisation = this.form.value['localisation'];
+
+      this.reservationService.createReservation(this.createReservationDto).subscribe(
+        (response: Reservation) => {
+          this.dialog.close(response);
         },
         (error) => {
-          // Handle error if user creation fails
           console.error('Error creating Reservation:', error);
         }
       );
-      }
     }
+    else if (this.data.type == 1 && this.data.reservationToUpdate) {  
+      this.updateReservationDto.id = this.data.reservationToUpdate.id;
+      this.updateReservationDto.dateReservation = this.form.value['dateReservation'];
+      this.updateReservationDto.departureDate = this.form.value['departureDate'];
+      this.updateReservationDto.group = this.form.value['group'];
+      this.updateReservationDto.localisation = this.form.value['localisation'];  
+
+      this.reservationService.updateReservation(this.updateReservationDto).subscribe(
+        (response: Reservation) => {
+          this.dialog.close(response);
+        },
+        (error: HttpErrorResponse) => {
+          console.error('Error updating Reservation:', error);
+        }
+      );
+    }
+  }
+}
