@@ -12,7 +12,13 @@ import { AdminComponent } from './components/admin/admin.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProductComponent } from './components/shop/product/product.component';
 import { ShopyComponent } from './components/shop/shopy/shopy.component';
-
+import { AddUserComponent } from './user-managment/add-user/add-user.component';
+import { UpdateUserComponent } from './user-managment/update-user/update-user.component';
+import { ListUserComponent } from './user-managment/list-user/list-user.component';
+import { AddReservationComponent } from './reservation-management/add-reservation/add-reservation.component';
+import { ListReservationComponent } from './reservation-management/list-reservation/list-reservation.component';
+import { UpdateReservationComponent } from './reservation-management/update-reservation/update-reservation.component';
+import { PopComponent } from './pop/pop.component';
 const routes: Routes = [
   {path: '', redirectTo:'groups',pathMatch:'full'},
   {path: 'groups', component:ListGroupComponent},
@@ -24,9 +30,16 @@ const routes: Routes = [
   {path: 'admin', component:AdminComponent},
   { path: 'groups/:groupId/offre', component: AddOffreComponent },
   { path: 'updateOffre/:id', component: UpdateOffreComponent },
+  {path: 'Users', component:ListUserComponent},                 
+  { path: 'AddUser', component: AddUserComponent },
+  { path: 'user/:id', component: UpdateUserComponent },
+  {path: 'Reservations', component:ListReservationComponent},
+  { path: 'AddReservation', component: AddReservationComponent },
+  { path: 'Reservation/:id', component: UpdateReservationComponent },
   { path: 'offreDetails/:id', component: DetailsOffreComponent },
   {path: 'Produit',component:ProductComponent},
-  {path:'Shop',component:ShopyComponent}
+  {path:'Shop',component:ShopyComponent},
+  {path:"pop",component:PopComponent}
   // {path: '**',component:ListGroupComponent}
 ];
 
