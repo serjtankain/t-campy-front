@@ -23,14 +23,18 @@
         <mat-button-toggle value="recent" class="btn btn-light p-0"
           >recent</mat-button-toggle
         >
-        <mat-button-toggle value="unanswered" class="btn btn-light p-0"
+        <!-- <mat-button-toggle value="unanswered" class="btn btn-light p-0"
           >unanswered</mat-button-toggle
-        >
+        > -->
       </mat-button-toggle-group>
     </div>
   </div>
-  <div *ngIf="forums.length != 0">
+  <div *ngIf="forums.length != 0 ">
+    
     <mat-expansion-panel *ngFor="let forum of forums" class="card">
+      <div *ngIf="Status=='unanswered' && forum.getFeedbacks.length==0">
+
+      </div>
       <mat-expansion-panel-header class="p-3">
         <mat-panel-title class="fw-bold">
           {{ forum.getTitle() }}

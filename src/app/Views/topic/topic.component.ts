@@ -139,11 +139,19 @@ export class TopicComponent implements OnInit {
       });
     });
   }
-  isClicked = false;
+  isClicked =false;
+  public idUsers: number[]=[];
   public like() {
-    
-    this.forumService.likeForum(this.forum);
-    this.isClicked=true;
+    if (this.idUsers == undefined || !this.idUsers.includes(this.user.getId())){
+    // if (this.idUsers=undefined && !this.idUsers.includes(this.user.getId())){
+
+      this.forumService.likeForum(this.forum);
+      this.idUsers.push(this.user.getId());
+      this.isClicked=true;
+      this.forum
+    }
+     
+     
   }
 
   public dislike() {

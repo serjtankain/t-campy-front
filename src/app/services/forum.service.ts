@@ -299,6 +299,7 @@ export class ForumService {
   //   );
   //   this.refreshPage();
   // }
+  isClicked = false;
   public async likeForum(forum: Forum) {
     try {
       await this.http
@@ -308,6 +309,7 @@ export class ForumService {
         )
         .subscribe((data) => {
           this.fetchForumsFromServer();
+          
         });
     } catch (error) {
       console.log(error);
@@ -317,7 +319,7 @@ export class ForumService {
         duration: 3000,
       });
     }
-    this.refreshPage();
+    
   }
 
   public async dislikeForum(forum: Forum) {
@@ -338,7 +340,7 @@ export class ForumService {
         duration: 3000,
       });
     }
-    this.refreshPage();
+    
   }
 
   public async getCommentByAuthorId(
