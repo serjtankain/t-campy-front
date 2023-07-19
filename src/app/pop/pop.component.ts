@@ -5,15 +5,25 @@ import { AddReservationComponent } from '../reservation-management/add-reservati
 @Component({
   selector: 'app-pop',
   templateUrl: './pop.component.html',
-  styleUrls: ['./pop.component.css']
+  styleUrls: ['./pop.component.css'],
 })
 export class PopComponent implements OnInit {
-  constructor() {}
+  message: string = "";
+  constructor(
+    public dialog: MatDialogRef<PopComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    public data: { type: string }
+  ) {}
 
-
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
+    if(this.data.type == "reservation")
+      this.message = "Reservation deleted successfully";
+    else
+      this.message = "User deleted successfully.";
   }
-  // onNoClick(): void {
-  //   this.dialogRef.close();
-  // }
+
+  close(): void {
+     this.dialog.close();
+  }
 }

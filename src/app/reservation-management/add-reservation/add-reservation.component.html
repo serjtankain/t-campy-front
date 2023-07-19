@@ -1,46 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Reservation Form</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@angular/material@12.2.5/prebuilt-themes/indigo-pink.css">
-</head>
-<body>
-  <h1>Reservation Form</h1>
-  
-  <form (ngSubmit)="AddReservation()">
-    <div class="date1">
-    <mat-form-field>
-      <mat-label>Arrival Date</mat-label>
-      <input matInput type="date" name="dateReservation" [(ngModel)]="res.dateReservation" required #date="ngModel">
-    </mat-form-field></div>
-    <div class="date2">
-    <mat-form-field>
-      <mat-label>Departure Date</mat-label>
-      <input matInput type="date" name="departureDate" [(ngModel)]="res.departureDate" required>
-    </mat-form-field></div>
-    <h4>Select Group:</h4>
-    <mat-form-field>
-      <mat-label>Groups</mat-label>
-      <mat-select required>
-        <mat-option *ngFor="let group of groups"  name="group" [(ngModel)]="res.group"  [value]="group.id">
-          {{group.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="form-group">
+    <label for="dateReservation" class="form-label">Arrival Date</label>
+    <input class="form-control" type="date" name="dateReservation" formControlName="dateReservation">
+    <div *ngIf="form.get('dateReservation')?.invalid && form.get('dateReservation')?.touched" class="text-danger">
+      Arrival Date is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="departureDate" class="form-label">Departure Date</label>
+    <input class="form-control" type="date" name="departureDate" formControlName="departureDate">
+    <div *ngIf="form.get('departureDate')?.invalid && form.get('departureDate')?.touched" class="text-danger">
+      Departure Date is required.
+    </div>
+  </div>
+  <h4>Select Group:</h4>
+  <div class="form-group">
+    <select class="form-control" name="group" formControlName="group">
+      <option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</option>
+    </select>
+    <div *ngIf="form.get('group')?.invalid && form.get('group')?.touched" class="text-danger">
+      Select a Group.
+    </div>
+  </div>
 
-    <h4>Select Location</h4>
-    <mat-form-field>
-      <mat-label>Location</mat-label>
-      <mat-select required>
-        <mat-option *ngFor="let localisation of localisations"  name="localisation" [(ngModel)]="res.localisation"  [value]="localisation.id">
-          {{localisation.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Submit</button>
-  </form>
-  
-  <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.4/dist/zone.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@angular/material@12.2.5/bundles/material.umd.min.js"></script>
-</body>
-</html>
+  <h4>Select Location</h4>
+  <div class="form-group">
+    <select class="form-control" name="localisation" formControlName="localisation">
+      <option *ngFor="let localisation of localisations" [value]="localisation.id">{{ localisation.name }}</option>
+    </select>
+    <div *ngIf="form.get('localisation')?.invalid && form.get('localisation')?.touched" class="text-danger">
+      Select a Location.
+    </div>
+  </div>
+  <div class="btn1">
+    <button type="submit" class="btn btn-primary btn-green">Save</button>
+    <button type="button" class="btn btn-danger btn-red" (click)="closePopup()">Close</button>
+  </div>
+</form>
