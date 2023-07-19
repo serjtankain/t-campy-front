@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(loginForm: NgForm) {
+    debugger
     this.userService.login(loginForm.value).subscribe(
       (response: any) => {
         this.userAuthService.setRoles(response.user.role);
