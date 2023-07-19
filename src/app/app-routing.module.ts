@@ -19,18 +19,27 @@ import { AddReservationComponent } from './reservation-management/add-reservatio
 import { ListReservationComponent } from './reservation-management/list-reservation/list-reservation.component';
 import { UpdateReservationComponent } from './reservation-management/update-reservation/update-reservation.component';
 import { PopComponent } from './pop/pop.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { BoardUserComponent } from './components/board-user/board-user.component';
+import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
+import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 const routes: Routes = [
-  {path: '', redirectTo:'groups',pathMatch:'full'},
+  {path: '', redirectTo:'login',pathMatch:'full'},
   {path: 'groups', component:ListGroupComponent},
   {path: 'addGroup', component:AddGroupComponent},
   { path: 'update/:id', component: UpdateGroupComponent },
   { path: 'details/:id', component: DetailsGroupComponent },
   {path: 'offers', component:ListOffreComponent},
   {path: 'login', component:LoginComponent},
-  {path: 'admin', component:AdminComponent},
+  { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'user', component: BoardUserComponent },
+  { path: 'mod', component: BoardModeratorComponent },
+  { path: 'admin', component: BoardAdminComponent },
   { path: 'groups/:groupId/offre', component: AddOffreComponent },
   { path: 'updateOffre/:id', component: UpdateOffreComponent },
-  {path: 'Users', component:ListUserComponent},                 
+  {path: 'Users', component:ListUserComponent},
   { path: 'AddUser', component: AddUserComponent },
   { path: 'user/:id', component: UpdateUserComponent },
   {path: 'Reservations', component:ListReservationComponent},

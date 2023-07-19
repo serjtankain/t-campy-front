@@ -1,41 +1,55 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserAuthService } from 'src/app/services/user-auth.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private userService: UserService,
-    private userAuthService: UserAuthService,
-    private router: Router
-  ) {}
+  form: any = {
+    username: null,
+    password: null
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
-  ngOnInit(): void {}
+  constructor(private authService: AuthService, private storageService: StorageService) { }
 
-  login(loginForm: NgForm) {
-    debugger
-    this.userService.login(loginForm.value).subscribe(
-      (response: any) => {
-        this.userAuthService.setRoles(response.user.role);
-        this.userAuthService.setToken(response.jwtToken);
+  ngOnInit(): void {
+    if (this.storageService.isLoggedIn()) {
+      this.isLoggedIn = true;
+      this.roles = this.storageService.getUser().roles;
+    }
+  }
 
-        const role = response.user.role[0].roleName;
-        if (role === 'Admin') {
-          this.router.navigate(['/admin']);
-        } else {
-          this.router.navigate(['/user']);
-        }
+  onSubmit(): void {
+    const { username, password } = this.form;
+
+    this.authService.login(username, password).subscribe({
+      next: data => {
+        this.storageService.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.storageService.getUser().roles;
+        this.reloadPage();
       },
-      (error) => {
-        console.log(error);
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
       }
-    );
+    });
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 }
