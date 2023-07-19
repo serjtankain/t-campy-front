@@ -3,6 +3,9 @@ import { GroupService } from 'src/app/services/group.service';
 import { Router } from '@angular/router';
 import { Group } from 'src/app/models/group';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-add-group',
@@ -15,7 +18,9 @@ export class AddGroupComponent implements OnInit {
 
   constructor(private groupService:GroupService,
     private router :Router,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<AddGroupComponent>,
+  private location: Location) {
 
     }
 
@@ -35,7 +40,9 @@ export class AddGroupComponent implements OnInit {
 
     this.groupService.addGroup(this.group).subscribe(
       {
-        next: () => this.router.navigate(['groups']),
+        next: () =>{ this.router.navigate(['groups'])
+        this.dialogRef.close(); 
+      },
       }
     )
 
