@@ -16,6 +16,7 @@
           aria-label="Close"
         ></button>
       </div>
+      <form #f="ngForm"  (ngSubmit)="addForumToServer()">
       <div class="modal-body">
         <div class="input-group mb-2">
           <input
@@ -55,10 +56,14 @@
           Add Topic
         </button>
       </div>
+    </form>
     </div>
+  
   </div>
 </div>
+
 <div
+
   class="modal fade"
   id="complaintModal"
   tabindex="-1"
@@ -113,4 +118,7 @@
       </div>
     </div>
   </div>
-</div>
+  <!--  -->
+
+
+  

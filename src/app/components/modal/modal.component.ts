@@ -46,8 +46,12 @@ export class ModalComponent {
       });
       return;
     }
+    
+  const maxID = Math.max(...this.forums.map(item => item.id));
+
+ 
     this.forum = new Forum(
-      (this.forums.length + 1).toString(),
+      (maxID + 1),
       this.title,
       this.description,
       new Date(),
@@ -60,6 +64,7 @@ export class ModalComponent {
       [],
       []
     );
+    
     try {
       this.forumService.addForumToServer(this.forum); // add Forum to server
       this.snackBar.open('Forum added', 'Close', {
@@ -129,4 +134,8 @@ export class ModalComponent {
     this.category = category.value;
     console.log('selected', this.category);
   }
+  public isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
 }

@@ -2,6 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Forum } from '../../Models/forum/forum.model';
 import { ForumService } from 'src/app/Services/forum.service';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-questions-list',
@@ -16,7 +17,7 @@ export class QuestionsListComponent {
   forums!: Forum[];
   Status: string = 'all';
 
-  constructor(private forumService: ForumService) {}
+  constructor(private forumService: ForumService,private authService:AuthService) {}
 
   ngOnInit(): void {
     this.forumService.countOpenedForums().then((number) => {
@@ -34,6 +35,7 @@ export class QuestionsListComponent {
     this.forumService.fetchForumsFromServer().then((Forums) => {
       this.forums = Forums;
     });
+    
   }
 
   sort($event: any) {
@@ -91,5 +93,8 @@ export class QuestionsListComponent {
 
   get ForumsList(): Forum[] {
     return this.forums ? this.forums : [];
+  }
+  public isAdmin(): boolean {
+    return this.authService.isAdmin();
   }
 }
