@@ -86,7 +86,7 @@ export class ModalComponent {
       window.location.reload();
     });
   }
-
+  
   public addComplaint(): void {
     if (!this.title || !this.description) {
       this.snackBar.open('Please fill all the fields', 'Close', {
@@ -96,8 +96,9 @@ export class ModalComponent {
       });
       return;
     }
+    const maxIDcomplaint = Math.max(...this.forums.map(item => item.id));
     this.complaint = new Complaint(
-      this.complaintService.getComplaints().length + 1,
+      maxIDcomplaint+ 1,
       this.title,
       this.description,
       new Date(),

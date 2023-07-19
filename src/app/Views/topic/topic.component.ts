@@ -208,14 +208,15 @@ if (idUsersDisLikesString) {
     if (!comment) {
       return;
     }
+    const maxIDcomment= Math.max(...this.comments.map(item => item.getId()));
     this.forumService.getFeedbacksCountFromServer().then((id) => {
       this.commentsCount = id;
     });
     let newComment = new Comment(
-      this.commentsCount + 1,
+      maxIDcomment + 1,
       comment,
       'neutral',
-      1,
+      this.user.getId(),
       Number(this.forum.getId()),
       new Date(),
       new Date(),
@@ -224,6 +225,7 @@ if (idUsersDisLikesString) {
     );
     // this.forumService.addCommentToServer(this.forum, newComment);
     this.forumService.addCommentToForumOnServer(this.forum, newComment);
+    this.feedback=newComment;
     this.comment = '';
   }
 
@@ -271,10 +273,6 @@ if (idUsersDisLikesString) {
       console.log(`${key}: ${value}`);
     }
   }
-    
-  
-  
-
   public dislike() {
     
       if (!this.idUsersDisLikes.includes(this.user.getId())){
@@ -376,12 +374,19 @@ public dislikeComment(comment:Comment) {
   }
 
   public changeComment(feedback:Comment){
-    this.ischangeComment=true;
-    this.isChangeForum=false;
+    console.log(this.user.getId())
+    
     this.feedback=feedback;
+    console.log("hello",this.feedback.getAuthorId())
+    
+    if (this.user.getId()==this.feedback.getAuthorId()){
+      this.ischangeComment=true;
+    }
+    this.ischangeComment=false;
+    this.isChangeForum=false;
     localStorage.setItem('ischangeComment', JSON.stringify(this.ischangeComment));
     localStorage.setItem('isChangeForum', JSON.stringify(this.isChangeForum));
-    return this.comment;
+  
     
   }
   public changeForum(){
