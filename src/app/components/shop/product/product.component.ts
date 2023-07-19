@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { product } from 'src/app/models/product';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
-import { UserAuthService } from 'src/app/services/user-auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -38,13 +38,13 @@ export class ProductComponent implements OnInit {
     },
     // Add more sample data as needed
   ];
-  constructor(private produitservice:ProductService, private router: Router,private auth:UserAuthService) { }
+  constructor(private produitservice:ProductService, private router: Router,private auth:AuthService) { }
 
   ngOnInit(): void {
   }
   getproduit(){
     return this.produitservice.getProducts().subscribe(product=> {this.listprod=product
-    console.log(this.listprod)  
+    console.log(this.listprod)
     })
   }
     addProductToCart(product: product): void {
