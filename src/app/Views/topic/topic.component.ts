@@ -234,6 +234,8 @@ if (idUsersDisLikesString) {
   }
 
   public deleteComment(comment: Comment) {
+    this.feedback=comment;
+   if (this.user.getId()==this.feedback.getAuthorId()){
     this.forumService.deleteCommentFromServer(this.forum, comment).then(() => {
       this.snackbar.open('Comment deleted', 'Close', {
         horizontalPosition: 'center',
@@ -241,6 +243,7 @@ if (idUsersDisLikesString) {
         duration: 3000,
       });
     });
+  }
   }
   
 
@@ -375,14 +378,13 @@ public dislikeComment(comment:Comment) {
 
   public changeComment(feedback:Comment){
     console.log(this.user.getId())
-    
+
     this.feedback=feedback;
     console.log("hello",this.feedback.getAuthorId())
-    
+    console.log()
     if (this.user.getId()==this.feedback.getAuthorId()){
       this.ischangeComment=true;
     }
-    this.ischangeComment=false;
     this.isChangeForum=false;
     localStorage.setItem('ischangeComment', JSON.stringify(this.ischangeComment));
     localStorage.setItem('isChangeForum', JSON.stringify(this.isChangeForum));
