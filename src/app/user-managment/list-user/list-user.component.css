@@ -1,0 +1,9 @@
+
+button, input, optgroup, select, textarea {
+    border: transparent;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+    margin-left: 82%;
+    margin-top: 2%;
+}
