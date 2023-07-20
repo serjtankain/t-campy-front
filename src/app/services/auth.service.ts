@@ -56,7 +56,7 @@ export class AuthService {
       this.setUserId('1');
       this.setAdmin();
     } 
-    if (username === 'amani' && password === 'amani'){
+    else if (username === 'amani' && password === 'amani'){
       this.setToken('token');
       this.setUserId('2');
     }

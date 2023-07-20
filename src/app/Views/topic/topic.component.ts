@@ -37,6 +37,7 @@ export class TopicComponent implements OnInit {
   public isChangeForum=false;
   public ischangeComment=false;
   public feedback!:Comment;
+  public idCommentS:number[]=[];
   
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -59,6 +60,13 @@ export class TopicComponent implements OnInit {
     this.title = this.forum.getTitle();
     this.description = this.forum.getDescription();
     this.category = this.forum.getCategory();
+     // Retrieving the isclicked state from localStorage
+     const idCommentString = localStorage.getItem('idCommentS');
+
+     // Checking if the isclicked state exists in localStorage
+     if (idCommentString !== null) {
+       const idCommentS = JSON.parse(idCommentString);
+   }
     // Retrieving the isclicked state from localStorage
     const isClickedLikeString = localStorage.getItem('isClickedLike');
 
@@ -209,9 +217,9 @@ if (idUsersDisLikesString) {
       return;
     }
     const maxIDcomment= Math.max(...this.comments.map(item => item.getId()));
-    this.forumService.getFeedbacksCountFromServer().then((id) => {
-      this.commentsCount = id;
-    });
+    // this.forumService.getFeedbacksCountFromServer().then((id) => {
+    //   this.commentsCount = id;
+    // });
     let newComment = new Comment(
       maxIDcomment + 1,
       comment,
@@ -224,7 +232,12 @@ if (idUsersDisLikesString) {
       0
     );
     // this.forumService.addCommentToServer(this.forum, newComment);
+    console.log(this.forum)
     this.forumService.addCommentToForumOnServer(this.forum, newComment);
+    this.isClickedDisLikeComment=false;
+    this.isClickedLikeComment=false;
+    localStorage.setItem('isClickedLikeComment', JSON.stringify(this.isClickedLikeComment));
+    localStorage.setItem('isClickedDisLikeComment', JSON.stringify(this.isClickedDisLikeComment));
     this.feedback=newComment;
     this.comment = '';
   }
@@ -299,27 +312,32 @@ if (idUsersDisLikesString) {
       }
 }
 public likeComment(comment:Comment) {
+ 
   //  localStorage.clear();
-    if (!this.idUsersLikesComment.includes(this.user.getId()) ){
-      // this.forumService.unDislikeForum(this.forum);
-      this.idUsersDisLikesComment = this.idUsersDisLikesComment.filter(userId => userId !== this.user.getId());
-    this.forumService.likeComment(comment);
-    this.idUsersLikesComment.push(this.user.getId());
-    this.isClickedDisLikeComment=false;
-    this.isClickedLikeComment=true;
-    // Saving the isclicked state to localStorage
-    localStorage.setItem('isClickedLikeComment', JSON.stringify(this.isClickedLikeComment));
-    localStorage.setItem('isClickedDisLikeComment', JSON.stringify(this.isClickedDisLikeComment));
-    // Save idUsersLikes and idUsersDisLikes arrays to localStorage
-    localStorage.setItem('idUsersLikesComment', JSON.stringify(this.idUsersLikesComment));
-    localStorage.setItem('idUsersDisLikesComment', JSON.stringify(this.idUsersDisLikesComment));
 
-    console.log(this.idUsersDisLikesComment)
-    console.log(this.idUsersLikesComment)
-    // Log the contents of localStorage
+  if (!this.idUsersLikesComment.includes(this.user.getId())){
+    // this.forumService.unDislikeForum(this.forum);
+    this.idUsersDisLikesComment = this.idUsersDisLikesComment.filter(userId => userId !== this.user.getId());
+  this.forumService.likeComment(comment);
+  this.idUsersLikesComment.push(this.user.getId());
+  this.isClickedDisLikeComment=false;
+  this.isClickedLikeComment=true;
+  // Saving the isclicked state to localStorage
+  localStorage.setItem('isClickedLikeComment', JSON.stringify(this.isClickedLikeComment));
+  localStorage.setItem('isClickedDisLikeComment', JSON.stringify(this.isClickedDisLikeComment));
+  // Save idUsersLikes and idUsersDisLikes arrays to localStorage
+  localStorage.setItem('idUsersLikesComment', JSON.stringify(this.idUsersLikesComment));
+  localStorage.setItem('idUsersDisLikesComment', JSON.stringify(this.idUsersDisLikesComment));
+  localStorage.setItem('idCommentS', JSON.stringify(this.idCommentS));
 
-  }
+  console.log(this.idUsersDisLikesComment)
+  console.log(this.idUsersLikesComment)
+  // Log the contents of localStorage
 
+}
+
+
+    
   
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
@@ -332,11 +350,11 @@ public likeComment(comment:Comment) {
 
 
 public dislikeComment(comment:Comment) {
-  
-    if (!this.idUsersDisLikesComment.includes(this.user.getId())){
+  if (!this.idUsersDisLikesComment.includes(this.user.getId()) && !this.idCommentS.includes(comment.getId())){
         this.idUsersLikesComment = this.idUsersLikesComment.filter(userId => userId !== this.user.getId());
  this.forumService.DislikeComment(comment);
  this.idUsersDisLikesComment.push(this.user.getId());
+ this.idCommentS.push(comment.getId());
  this.isClickedDisLikeComment=true;
  this.isClickedLikeComment=false;
  // Saving the isclicked state to localStorage
@@ -345,7 +363,8 @@ public dislikeComment(comment:Comment) {
  // Save idUsersLikes and idUsersDisLikes arrays to localStorage
  localStorage.setItem('idUsersLikesComment', JSON.stringify(this.idUsersLikesComment));
  localStorage.setItem('idUsersDisLikesComment', JSON.stringify(this.idUsersDisLikesComment));
-
+//
+localStorage.setItem('idCommentS', JSON.stringify(this.idCommentS));
     }
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);

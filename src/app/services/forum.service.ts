@@ -120,6 +120,7 @@ export class ForumService {
         duration: 3000,
       });
     }
+    this.refreshPage();
   }
 
   public async updateForumOnServer(forum: Forum): Promise<void> {
