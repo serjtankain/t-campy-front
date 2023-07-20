@@ -42,6 +42,8 @@ import { BoardAdminComponent } from './components/board-admin/board-admin.compon
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { AddProductComponent } from './components/shop/add-product/add-product.component';
 
 //   return () =>
 //    kcService.init({
@@ -90,6 +92,8 @@ import { CommonModule } from '@angular/common';
    BoardAdminComponent,
    BoardModeratorComponent,
    BoardUserComponent,
+   ProductComponent,
+   AddProductComponent
 
 
 
@@ -98,6 +102,7 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    RouterModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
