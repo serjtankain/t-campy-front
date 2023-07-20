@@ -1,0 +1,38 @@
+.dialog{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 40px;
+  }
+  .example-additional-selection {
+      opacity: 0.75;
+      font-size: 0.75em;
+    }
+/* custom-styles.css */
+/* Apply green background and white text to the button */
+.btn-green {
+background-color: #4caf50;
+color: white;
+}
+
+/* Apply gray color and bold font to the labels and h4 elements */
+label, h4 {
+color: gray;
+font-weight: bold;
+}
+
+
+.btn-green {
+background-color: #4caf50; /* Green color for buttons */
+border-color: #4caf50; /* Green color for button borders */
+}
+.btn-red {
+background-color: #f44336;
+color: white;
+margin-left: 5%;
+
+}
+.btn1{
+margin-left: 75%;
+margin-top: 5%;
+}
