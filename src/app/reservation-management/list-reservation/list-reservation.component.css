@@ -1,0 +1,59 @@
+
+button, input, optgroup, select, textarea {
+    border: transparent;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+    margin-left: 82%;
+    margin-top: 2%;
+}
+
+/* Add this to your CSS file or component's styles */
+/* Add this to your CSS file or component's styles */
+.card .custom-title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 10px;
+  }
+  
+  .card .card-body {
+    padding-top: 20px; /* Adjust the value as needed for the top padding */
+    padding: 15px 15px 10px;
+    border: 1px solid #ccc; /* Add gray border to the card */
+
+  }
+
+.table-responsive {
+    min-height: .01%;
+    overflow-x: auto;
+    margin-top: 4%;
+
+}
+button {
+    padding: 17px 40px;
+    border-radius: 50px;
+    border: 0;
+    background-color: 5F97CD;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all .5s ease;
+   }
+   
+   button:hover {
+    letter-spacing: 2px;
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+   }
+   
+   button:active {
+    letter-spacing: 2px;
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+    transform: translateY(10px);
+    transition: 100ms;
+   }

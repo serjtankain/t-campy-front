@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { PopComponent } from 'src/app/pop/pop.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-user',
@@ -42,18 +44,30 @@ showPassword: { [userId: number]: boolean } = {}; // Track password visibility p
 
 
   removeUsers(id: any) {
-    console.log(id);
-    
+
+  
+  
+
     this.userService.deleteUser(id).subscribe(
       (Response) => {
         console.log(Response);
-        window.location.reload();
-
-
-      },
-      (error) => {
-        console.log(error);
-      }
+      const dialogRef = this.dialog.open(PopComponent,{
+        height: '200',
+        width: '300',
+        data: { type: "user" },
+  
+      });
+    
+      dialogRef.afterClosed().subscribe(() => {
+        this.listUsers = this.listUsers.filter(
+          (user) => user.id != id
+        );
+        this.listUsers = [...this.listUsers];  
+      });
+    },
+    (error: HttpErrorResponse) => {
+      console.log(error);
+    }
     );
   }
   updateUser(id:number){

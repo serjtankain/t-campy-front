@@ -1,13 +1,12 @@
-<button class="btn btn-secondary" (click)="openDialog()"
+<button class="btn btn-secondary" (click)="createReservation(0)"
 matTooltip="Info about the action">
-  <i class="material-icons">person_add</i> Add Reservation
+  <i class="material-icons">add_card</i> Add Reservation
 </button>
 
-<div class="center">
-  <br>
-  <br>
-  <br>
-  <table class="table table-striped">
+<div class="card mt-3">
+  <div class="card-body">
+    <h3 class="card-title custom-title">List of Reservation</h3>
+    <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col" style="color: #5F97CD">#</th>
@@ -24,25 +23,26 @@ matTooltip="Info about the action">
         <td>{{ item.id }}</td>
         <td>{{ item.dateReservation }}</td>
         <td>{{ item.departureDate }}</td>
-        <td>{{ item.group }}</td>
-        <td>{{ item.localisation }}</td>
+        <td>{{ item.group.name }}</td>
+        <td>{{ item.localisation.name }}</td>
         <td>
           <span
             (click)="removeReservation(item.id)"
             class="material-icons-outlined"
             style="color: red; cursor: pointer"
           >
-            person_remove
-          </span>
+          event_busy
+                   </span>
         </td>
         <td>
           <span
-            (click)="updateReservation(item.id)"
+            (click)="updateReservation(1, item)"
             class="material-icons-outlined"
             style="color: #17548E"
           >
-            edit_note
-          </span>
+          <span class="material-symbols-outlined">
+            edit_calendar            </span>
+                  </span>
         </td>
        
       </tr>

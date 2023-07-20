@@ -1,10 +1,10 @@
 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKb5XnFScJzd9iXZ5ywW7d8wvfwPHkqJcc5bcQkpqRwFTQKIHrHi8DgJ_SrJQ4ydJWbs0&usqp=CAU" alt="Image description">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7l_NHjpYwEePH6PdCeAUtijsBLSEkV7xt3nmzt7o3jxJ2j9k90qh8tqAMPnNU7kIVnss&usqp=CAU" alt="Image description">
 
 
-<form #f="ngForm" (ngSubmit)="addUser()" >
+<form #f="ngForm" (ngSubmit)="addUser()">
   <div class="form-group">
-    <label for="username" class="form-label mt-2">Username</label>
+    <label for="username" class="form-label mt-2" style="color: #3f4c6f; font-weight: bold;">Username</label>
     <input type="text" class="form-control" name="username" [(ngModel)]="user.username" required minlength="3" #username="ngModel">
     <div *ngIf="username.invalid && username.touched" class="text-danger">
       <div *ngIf="username.errors?.['required']">Username is required.</div>
@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="email" class="form-label mt-2">Email</label>
+    <label for="email" class="form-label mt-2" style="color: #3f4c6f; font-weight: bold;">Email</label>
     <input type="email" class="form-control" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}" [(ngModel)]="user.email" #email="ngModel">
     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
       <div *ngIf="email.errors?.['required']">Email is required.</div>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="password">Password</label>
+    <label for="password" style="color: #3f4c6f; font-weight: bold;">Password</label>
     <input type="password" class="form-control" name="password"  [(ngModel)]="user.password" required minlength="5" #password="ngModel">
     <div *ngIf="password.invalid && password.touched" class="text-danger">
       <div *ngIf="password.errors?.['required']">Password is required.</div>
@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="age" class="form-label mt-2">Age</label>
+    <label for="age" class="form-label mt-2" style="color: #3f4c6f; font-weight: bold;">Age</label>
     <input type="number" class="form-control" name="age" [(ngModel)]="user.age" required max="100" #age="ngModel">
     <div *ngIf="age.invalid && age.touched" class="text-danger">
       <div *ngIf="age.errors?.['required']">Age is required.</div>

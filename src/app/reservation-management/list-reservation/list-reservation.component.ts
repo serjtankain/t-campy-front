@@ -5,86 +5,83 @@ import { ReservationService } from 'src/app/services/reservation.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { Group } from 'src/app/models/group';
+import { DeleteReservationResponse } from 'src/app/models/dtos/deleteReservationResponse';
+import { HttpErrorResponse } from '@angular/common/http';
+import { PopComponent } from 'src/app/pop/pop.component';
 
 @Component({
   selector: 'app-list-reservation',
   templateUrl: './list-reservation.component.html',
-  styleUrls: ['./list-reservation.component.css']
+  styleUrls: ['./list-reservation.component.css'],
 })
 export class ListReservationComponent implements OnInit {
-  listofRes!: Reservation[];
-  localisations: any[] = [];
+  listofRes: Reservation[] = [];
+  localisations: Location[] = [];
   groups: Group[] = [];
-  id:number=1;
   constructor(
     private resService: ReservationService,
     private router: Router,
     public dialog: MatDialog
   ) {}
 
-  openDialog() {
+  createReservation(type: number) {
     const dialogRef = this.dialog.open(AddReservationComponent, {
       height: '400px',
       width: '600px',
+      data: { type: type },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe((result: Reservation) => {
+      if (result != undefined) this.listofRes.push(result);
     });
   }
 
   ngOnInit(): void {
     this.AfficheRes();
-    this.getLocations();
-    this.loadGroups();
   }
 
   AfficheRes() {
-    return this.resService.getAllReservation().subscribe(reservations => {
+    return this.resService.getAllReservation().subscribe((reservations) => {
       this.listofRes = reservations;
-      console.log(this.listofRes);
     });
   }
 
-  getLocations() {
-    this.resService.getCampingLocation().subscribe(
-      (data: any) => {
-        this.localisations = data;
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-
-  loadGroups() {
-    this.resService.getGroups(this.id).subscribe(
-      (data: Group[]) => {
-        this.groups = data;
-        console.log(data);
-      },
-      (error) => {
-        console.error('Error retrieving groups:', error);
-      }
-    );
-  }
-
   removeReservation(id: any) {
-    console.log(id);
-
     this.resService.deleteReservation(id).subscribe(
-      (Response) => {
-        console.log(Response);
-        window.location.reload();
+      (response: DeleteReservationResponse) => {
+        const dialogRef = this.dialog.open(PopComponent, {
+          height: '200',
+          width: '300',
+          data: { type: "reservation" },
+        });
+
+        dialogRef.afterClosed().subscribe(() => {
+          this.listofRes = this.listofRes.filter(
+            (reservation) => reservation.id != id
+          );
+          this.listofRes = [...this.listofRes];  
+        });
       },
-      (error) => {
+      (error: HttpErrorResponse) => {
         console.log(error);
       }
     );
   }
 
-  updateReservation(id: number) {
-    this.router.navigate(['/Reservation', id]);
+  updateReservation(type: number, reservation: Reservation) {
+    const dialogRef = this.dialog.open(AddReservationComponent, {
+      height: '400px',
+      width: '600px',
+      data: { type: type, reservationToUpdate: reservation },
+    });
+
+    dialogRef.afterClosed().subscribe((result: Reservation) => {
+      if (result != undefined) {
+         for (let i = 0; i < this.listofRes.length; i++) {
+          if (this.listofRes[i].id == result.id) this.listofRes[i] = result;
+        }
+        this.listofRes = [...this.listofRes];
+      }
+    });
   }
 }

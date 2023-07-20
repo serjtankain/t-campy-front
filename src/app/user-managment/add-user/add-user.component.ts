@@ -30,31 +30,24 @@ export class AddUserComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    
   }
+ 
   addUser() {
-    console.log(this.user);
-  
     this.userservice.createUser(this.user).subscribe(
-      () => {
-        // Update the user list after successful user creation
-        this.userservice.getAllUsers().subscribe(
-          (user) => {
-            // Assuming you have a users array in your component to store the user list
-            this.users = user;
-          }
-        );
-        
-        this.router.navigate(['/Users']);
+      (response: User) => {
+        // Close the popup after successful user creation
+        this.dialogRef.close();
+  
+        // Add the new user to the table data
       },
-      (error) => {
+      (error: any) => {
         // Handle error if user creation fails
         console.error('Error creating user:', error);
       }
     );
-    this.dialogRef.close();
-
   }
+  
+  
 
 }
 
