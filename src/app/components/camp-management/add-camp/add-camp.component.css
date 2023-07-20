@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.camp-container {
+  height: 100vh;
+  background-image: url("src/assets/heni.jpg");
+  /*background-repeat: no-repeat;*/
+  /*background-size: cover;*/
+  /*background-position: center;*/
+  background-color: rgba(0, 0, 0, 0.1); /* Adjust the last value (0.5) to set the desired transparency */
+
+}
+
+/* Transition */
+.camp-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 25%;
+}
+
+

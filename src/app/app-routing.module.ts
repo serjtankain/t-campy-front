@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListGroupComponent } from './components/groups-management/list-group/list-group/list-group.component';
-import { AddGroupComponent } from './components/groups-management/add-Group/add-group/add-group.component';
-import { UpdateGroupComponent } from './components/groups-management/update-Group/update-group/update-group.component';
-import { DetailsGroupComponent } from './components/groups-management/details-group/details-group/details-group.component';
-import { ListOffreComponent } from './components/offres-management/list-offre/list-offre.component';
 import { AddOffreComponent } from './components/offres-management/add-offre/add-offre.component';
 import { UpdateOffreComponent } from './components/offres-management/update-offre/update-offre.component';
 import { DetailsOffreComponent } from './components/offres-management/details-offre/details-offre.component';
@@ -23,8 +19,18 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
+import {AddGroupComponent} from "./components/groups-management/add-Group/add-group/add-group.component";
+import {UpdateGroupComponent} from "./components/groups-management/update-Group/update-group/update-group.component";
+import {DetailsGroupComponent} from "./components/groups-management/details-group/details-group/details-group.component";
+import {ListOffreComponent} from "./components/offres-management/list-offre/list-offre.component";
+
 const routes: Routes = [
-  {path: '', redirectTo:'login',pathMatch:'full'},
+
+  // {
+  //   path: '**',
+  //   redirectTo: '/welcome'
+  // }
+  {path: '', redirectTo:'welcome',pathMatch:'full'},
   {path: 'groups', component:ListGroupComponent},
   {path: 'addGroup', component:AddGroupComponent},
   { path: 'update/:id', component: UpdateGroupComponent },

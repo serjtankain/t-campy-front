@@ -1,12 +1,13 @@
-import { NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GroupsManagementComponent } from './components/groups-management/groups-management.component';
 import { ListGroupComponent } from './components/groups-management/list-group/list-group/list-group.component';
 import { AddGroupComponent } from './components/groups-management/add-Group/add-group/add-group.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { DetailsGroupComponent } from './components/groups-management/details-group/details-group/details-group.component';
 import { UpdateGroupComponent } from './components/groups-management/update-Group/update-group/update-group.component';
 import { DetailsOffreComponent } from './components/offres-management/details-offre/details-offre.component';
@@ -41,6 +42,17 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import {RouterModule} from "@angular/router";
+import {ListCampComponent} from "./components/camp-management/list-camp/list-camp.component";
+import {AboutUsComponent} from "./components/nav-menu/about-us/about-us.component";
+import {WelcomeComponent} from "./components/nav-menu/welcome/welcome.component";
+import {OurServicesComponent} from "./components/nav-menu/our-services/our-services.component";
+import {ContactUsComponent} from "./components/nav-menu/contact-us/contact-us.component";
+import {AddCampComponent} from "./components/camp-management/add-camp/add-camp.component";
+import {DetailsCampComponent} from "./components/camp-management/details-camp/details-camp.component";
+import {UpdateCampComponent} from "./components/camp-management/update-camp/update-camp.component";
+import {CampManagementComponent} from "./components/camp-management/camp-management.component";
 
 //   return () =>
 //    kcService.init({
@@ -51,14 +63,6 @@ import { BoardUserComponent } from './components/board-user/board-user.component
 //         clientId:'camp',
 
 
-//       },
-//       initOptions: {
-//         onLoad: 'login-required',
-//         checkLoginIframe:                                                                                                                                                                                                                             true,
-
-//       },
-//     });
-// }
 
 @NgModule({
   declarations: [
@@ -74,6 +78,15 @@ import { BoardUserComponent } from './components/board-user/board-user.component
     UpdateOffreComponent,
     LoginComponent,
     AdminComponent,
+    AddCampComponent,
+    DetailsCampComponent,
+    ListCampComponent,
+    AboutUsComponent,
+    WelcomeComponent,
+    OurServicesComponent,
+    ContactUsComponent,
+    UpdateCampComponent,
+    CampManagementComponent,
     UserManagmentComponent,
     AddUserComponent,
     ListUserComponent,
@@ -93,20 +106,24 @@ import { BoardUserComponent } from './components/board-user/board-user.component
 
 
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatDialogModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatTabsModule,
+        RouterModule
+    ],
+
   providers: [
 
     BrowserAnimationsModule,
     MatDialogModule,
     MatSelectModule
+
 
 
   ],
