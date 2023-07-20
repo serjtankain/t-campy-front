@@ -41,6 +41,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
+import { CommonModule } from '@angular/common';
 
 //   return () =>
 //    kcService.init({
@@ -100,7 +101,8 @@ import { BoardUserComponent } from './components/board-user/board-user.component
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    CommonModule
   ],
   providers: [
 
