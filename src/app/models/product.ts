@@ -1,7 +1,8 @@
 export class product{
+  nom!:string
     id!:number
     codeProduit!:number
-    NomProduit!:string
+  NomProduit!:string
     prix!:number
     description!:string
     quantity!:number
@@ -9,4 +10,3 @@ export class product{
     photo !: string
     category!: string
 }
-  

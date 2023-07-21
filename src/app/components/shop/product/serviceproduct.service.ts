@@ -8,7 +8,7 @@ import {product} from "src/app/models/product";
 })
 export class ServiceproductService {
 
-  private baseUrl = "http://localhost:8080/api/";
+  private baseUrl = "http://localhost:8089/t-campy/produit/";
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +16,7 @@ export class ServiceproductService {
     return this.http.delete<product[]>(this.baseUrl+"/"+Product.id);
   }
   getProducts(){
-    return this.http.get<product[]>(this.baseUrl)
+    return this.http.get<product[]>(this.baseUrl+"retrieve-all-Produits")
   }
   addProduct(Product:product){
     return this.http.post(this.baseUrl,Product)
@@ -26,7 +26,7 @@ export class ServiceproductService {
   }
   getProductById(id: number) {
     const params = new HttpParams().set('id', id);
-    return this.http.get<product>(this.baseUrl, { params });
+    return this.http.get<product>(this.baseUrl+"retrieve-Produit/"+id);
   }
 
 }

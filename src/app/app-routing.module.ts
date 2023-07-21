@@ -62,7 +62,7 @@ const routes: Routes = [
   {path:'LIGHTNING',component:LIGHTNINGComponent},
   {path:'OTHERS',component:OTHERSComponent},
   {path:'Orders',component:OrderComponent},
-  {path:'Details',component:DetailProductComponent},
+  {path:'Details/:id',component:DetailProductComponent},
   {path:'About',component:AboutComponent},
   {path:"pop",component:PopComponent}
   // {path: '**',component:ListGroupComponent}
