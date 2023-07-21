@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import {MatTabGroup} from "@angular/material/tabs";
+import {TabService} from "../../services/tab.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -9,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class HomeComponent implements OnInit {
   content?: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private router:Router) { }
 
   ngOnInit(): void {
     this.userService.getPublicContent().subscribe({
@@ -24,5 +27,11 @@ export class HomeComponent implements OnInit {
         }
       }
     });
+  }
+
+
+
+  navigateToBookNow() {
+    this.router.navigate(["login"]); // Switch to Booking tab
   }
 }

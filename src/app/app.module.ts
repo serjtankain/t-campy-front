@@ -44,6 +44,7 @@ import { BoardUserComponent } from './components/board-user/board-user.component
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AddProductComponent } from './components/shop/add-product/add-product.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 //   return () =>
 //    kcService.init({
@@ -98,17 +99,18 @@ import { AddProductComponent } from './components/shop/add-product/add-product.c
 
 
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    RouterModule,
-    ReactiveFormsModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatDialogModule,
-    CommonModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        RouterModule,
+        ReactiveFormsModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        CommonModule,
+        MatTabsModule
+    ],
   providers: [
 
     BrowserAnimationsModule,

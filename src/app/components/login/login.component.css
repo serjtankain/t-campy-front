@@ -15,11 +15,11 @@
     border-radius: 5px;
     cursor: pointer;
    }
-   
+
    #bottone1:hover {
     box-shadow: 7px 5px 56px -14px #C3D900;
    }
-   
+
    #bottone1:active {
     transform: scale(0.97);
     box-shadow: 7px 5px 56px -10px #C3D900;
@@ -48,12 +48,12 @@ body{
     border-radius: 50%;
 }
 .shape:first-child{
- 
+
     left: -80px;
     top: -80px;
 }
 .shape:last-child{
-   
+
     right: -30px;
     bottom: -80px;
 }
@@ -94,7 +94,7 @@ label{
 .error-message {
     color: red;
   }
-  
+
 input{
     display: block;
     height: 50px;
