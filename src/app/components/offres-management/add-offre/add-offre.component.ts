@@ -1,5 +1,5 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Offre } from 'src/app/models/offre';
 import { GroupService } from 'src/app/services/group.service';
@@ -24,7 +24,8 @@ export class AddOffreComponent implements OnInit {
   constructor(private groupService:GroupService,
     private router :Router,
     private route: ActivatedRoute,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<AddOffreComponent>,) {
     }
 
   ngOnInit(): void {
@@ -56,6 +57,7 @@ export class AddOffreComponent implements OnInit {
     this.groupService.addOffreToGroup(this.groupId, this.offre).subscribe(
       (response) => {
         console.log('Offre added successfully')
+        this.dialogRef.close(); 
         this.router.navigate(['groups'])
         // Navigate back to the group list or perform any other necessary actions
       },

@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong ">
+  <!-- Links -->
+  <ul class="navbar-nav ms-auto" style="font-weight: bold">
+    <li class="nav-item" style=" padding-left:30px; padding-right:30px;  margin-left:30px;margin-right:30px;font-size: 18px">
+      <a href="/home" class="nav-link" routerLink="home" style="color: #ffffff">Home </a>
+    </li>
+    <li class="nav-item" style=" padding-left:30px; padding-right:30px;  margin-left:30px;margin-right:30px;font-size: 18px">
+      <a routerLink="" class="nav-link" routerLinkActive="active" style="color: #ffffff">About US</a>
+    </li>
+    <li class="nav-item" style=" padding-left:30px; padding-right:30px;  margin-left:30px;margin-right:30px;font-size: 18px">
+        <a routerLink="groups" class="nav-link" routerLinkActive="active" style="color: #ffffff">Groups</a>
+    </li>
+    <li class="nav-item" style=" padding-left:30px; padding-right:30px;  margin-left:30px;margin-right:30px;font-size: 18px">
+      <a routerLink="offers" class="nav-link" routerLinkActive="active" style="color: #ffffff">Offres</a>
+    </li>
+
+    <li class="nav-item" style=" padding-left:30px; padding-right:30px;  margin-left:30px;margin-right:30px;font-size: 18px">
+      <a routerLink="Reservations" class="nav-link" routerLinkActive="active" style="color: #ffffff">Reservations</a>
+    </li>
+
+
+    <li class="nav-item" *ngIf="showAdminBoard" style=" padding-left:30px; padding-right:30px;  margin-left:30px;margin-right:30px;font-size: 18px">
+      <a href="/admin" class="nav-link" routerLink="admin" style="color: #ffffff">Admin Board</a>
+    </li>
+    <li class="nav-item" *ngIf="showModeratorBoard" style=" padding-left:30px; padding-right:30px;  margin-left:30px;margin-right:30px;font-size: 18px">
+      <a href="/mod" class="nav-link" routerLink="mod" style="color: #ffffff">Moderator Board</a>
+    </li>
+    <li class="nav-item" style=" padding-left:30px; padding-right:30px;  margin-left:30px;margin-right:30px;font-size: 18px">
+      <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user" style="color: #ffffff">User</a>
+    </li>
+  </ul>
+<!--  <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">-->
+<!--    <li class="nav-item">-->
+<!--      <a href="/register" class="nav-link" routerLink="register">Sign Up</a>-->
+<!--    </li>-->
+<!--    <li class="nav-item">-->
+<!--      <a href="/login" class="nav-link" routerLink="login">Login</a>-->
+<!--    </li>-->
+<!--  </ul>-->
+
+  <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+    <li class="nav-item">
+      <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+    </li>
+    <li class="nav-item">
+      <a href class="nav-link" (click)="logout()">LogOut</a>
+    </li>
+  </ul>
+</nav>
+
+<!--<mat-tab-group class="sticky-tab">-->
+
+<!--  &lt;!&ndash; Welcome &ndash;&gt;-->
+<!--  <mat-tab label="Welcome" id="Welcome">-->
+<!--&lt;!&ndash;    <app-home></app-home>&ndash;&gt;-->
+<!--  </mat-tab>-->
+
+
+<!--  &lt;!&ndash; About me &ndash;&gt;-->
+<!--  <mat-tab label="About Us">-->
+<!--  </mat-tab>-->
+
+
+
+<!--  &lt;!&ndash; Management &ndash;&gt;-->
+<!--  <mat-tab label="Our Services">-->
+<!--    <mat-tab-group class="sticky-tab">-->
+<!--      <mat-tab label="Groups" id="groups">-->
+<!--      <app-list-group></app-list-group>-->
+<!--      </mat-tab>-->
+<!--      <mat-tab label="Reservation" id="reservation">-->
+<!--      <app-list-reservation></app-list-reservation>-->
+<!--      </mat-tab>-->
+<!--      <mat-tab label="Offers" id="offers">-->
+<!--        <app-list-offre></app-list-offre>-->
+<!--      </mat-tab>-->
+<!--      <mat-tab label="Campings" id="staff4">-->
+<!--      </mat-tab>-->
+<!--    </mat-tab-group>-->
+<!--  </mat-tab>-->
+
+<!--  &lt;!&ndash; Forum &ndash;&gt;-->
+<!--  <mat-tab label="Forum" id="forum">-->
+<!--  </mat-tab>-->
+<!--</mat-tab-group>-->

@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { User } from 'src/app/Models/User/user';
+import { User } from 'src/app/models/user;
 import { Comment } from 'src/app/Models/comment/comment.model';
 import { Forum } from 'src/app/Models/forum/forum.model';
 import { AuthService } from 'src/app/Services/auth.service';
@@ -38,7 +38,7 @@ export class TopicComponent implements OnInit {
   public ischangeComment=false;
   public feedback!:Comment;
   public idCommentS:number[]=[];
-  
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
@@ -80,7 +80,7 @@ export class TopicComponent implements OnInit {
    // Checking if the isclicked state exists in localStorage
    if (isClickedDisLikeString !== null) {
      const isClickedDisLikeLike = JSON.parse(isClickedDisLikeString);
-  
+
 }
 // Retrieve idUsersLikes and idUsersDisLikes arrays from localStorage
 const idUsersLikesString = localStorage.getItem('idUsersLikes');
@@ -103,29 +103,29 @@ if (idUsersDisLikesString) {
    }
     // Retrieving the isclicked state from localStorage
     const isClickedDisLikeCommentString = localStorage.getItem('isClickedDisLikeComment');
- 
+
     // Checking if the isclicked state exists in localStorage
     if (isClickedDisLikeCommentString !== null) {
       const isClickedDisLikeComment = JSON.parse(isClickedDisLikeCommentString);
-   
+
  }
 
  //commmentairess part
  // Retrieve idUsersLikes and idUsersDisLikes arrays from localStorage
  const idUsersLikesCommentString = localStorage.getItem('idUsersLikesComment');
  const idUsersDisLikesCommentString = localStorage.getItem('idUsersDisLikesComment');
- 
+
  // Check if the arrays exist in localStorage and assign them back to component properties
  if (idUsersLikesCommentString) {
    this.idUsersLikesComment = JSON.parse(idUsersLikesCommentString);
  }
- 
+
  if (idUsersDisLikesCommentString) {
    this.idUsersDisLikesComment = JSON.parse(idUsersDisLikesCommentString);
    }
  // Retrieving the isclicked state from localStorage
  const ischangeCommentString = localStorage.getItem('isChangeComment');
- 
+
  // Checking if the isclicked state exists in localStorage
  if (ischangeCommentString !== null) {
    const isChangeComment = JSON.parse(ischangeCommentString);
@@ -133,7 +133,7 @@ if (idUsersDisLikesString) {
 
    // Retrieving the isclicked state from localStorage
  const ischangeForumString = localStorage.getItem('isChangeForum');
- 
+
  // Checking if the isclicked state exists in localStorage
  if (ischangeForumString !== null) {
    const isChangeForum = JSON.parse(ischangeForumString);
@@ -181,7 +181,7 @@ if (idUsersDisLikesString) {
       this.feedback.getLikes(),
       this.feedback.getDisLikes()
     );
-    
+
     this.forumService.updateCommentOnServer(this.forum,newComment);
     // this.forumService.refreshPage();
   }
@@ -258,7 +258,7 @@ if (idUsersDisLikesString) {
     });
   }
   }
-  
+
 
   public like() {
     //  localStorage.clear();
@@ -282,7 +282,7 @@ if (idUsersDisLikesString) {
 
     }
 
-    
+
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       const value = localStorage.getItem(String(key));
@@ -290,7 +290,7 @@ if (idUsersDisLikesString) {
     }
   }
   public dislike() {
-    
+
       if (!this.idUsersDisLikes.includes(this.user.getId())){
           this.idUsersLikes = this.idUsersLikes.filter(userId => userId !== this.user.getId());
    this.forumService.dislikeForum(this.forum);
@@ -312,7 +312,7 @@ if (idUsersDisLikesString) {
       }
 }
 public likeComment(comment:Comment) {
- 
+
   //  localStorage.clear();
 
   if (!this.idUsersLikesComment.includes(this.user.getId())){
@@ -337,15 +337,15 @@ public likeComment(comment:Comment) {
 }
 
 
-    
-  
+
+
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     const value = localStorage.getItem(String(key));
     console.log(`${key}: ${value}`);
   }
 }
-  
+
 
 
 
@@ -372,8 +372,8 @@ localStorage.setItem('idCommentS', JSON.stringify(this.idCommentS));
       console.log(`${key}: ${value}`);
     }
 }
-    
-  
+
+
   // public unLike() {
   //   this.forumService.unLikeForum(this.forum);
   // }
@@ -390,7 +390,7 @@ localStorage.setItem('idCommentS', JSON.stringify(this.idCommentS));
     this.category = category.value;
     console.log('selected', this.category);
   }
-  
+
   public isAdmin(): boolean {
     return this.authService.isAdmin();
   }
@@ -407,8 +407,8 @@ localStorage.setItem('idCommentS', JSON.stringify(this.idCommentS));
     this.isChangeForum=false;
     localStorage.setItem('ischangeComment', JSON.stringify(this.ischangeComment));
     localStorage.setItem('isChangeForum', JSON.stringify(this.isChangeForum));
-  
-    
+
+
   }
   public changeForum(){
     this.ischangeComment=false;
@@ -421,11 +421,11 @@ localStorage.setItem('idCommentS', JSON.stringify(this.idCommentS));
       console.log(`${key}: ${value}`);
     }
     return this.forum;
-   
+
   }
 
 
-   
- 
-  
+
+
+
 }
