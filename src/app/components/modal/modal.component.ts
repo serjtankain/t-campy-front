@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { Camping } from 'src/app/Models/Camping/camping';
 import { Complaint } from 'src/app/Models/Complaint/complaint';
 import { Forum } from 'src/app/Models/forum/forum.model';
-import { AuthService } from 'src/app/Services/auth.service';
 import { ComplaintService } from 'src/app/Services/complaint.service';
 import { ForumService } from 'src/app/Services/forum.service';
+import {StorageService} from "../../services/storage.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-modal',
@@ -28,7 +29,8 @@ export class ModalComponent {
     private router: Router,
     private forumService: ForumService,
     private complaintService: ComplaintService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private storageService: StorageService
   ) {}
 
   ngOnInit() {
@@ -46,16 +48,16 @@ export class ModalComponent {
       });
       return;
     }
-    
+
   const maxID = Math.max(...this.forums.map(item => item.id));
 
- 
+
     this.forum = new Forum(
       (maxID + 1),
       this.title,
       this.description,
       new Date(),
-      this.authService.getUsername(),
+      this.storageService.getUser().username,
       'No tags yet',
       0,
       0,
@@ -64,7 +66,7 @@ export class ModalComponent {
       [],
       []
     );
-    
+
     try {
       this.forumService.addForumToServer(this.forum); // add Forum to server
       this.snackBar.open('Forum added', 'Close', {
@@ -86,7 +88,7 @@ export class ModalComponent {
       window.location.reload();
     });
   }
-  
+
   public addComplaint(): void {
     if (!this.title || !this.description) {
       this.snackBar.open('Please fill all the fields', 'Close', {
@@ -104,7 +106,7 @@ export class ModalComponent {
       new Date(),
       new Date(),
       '',
-      Number(this.authService.getUser()),
+      Number(this.storageService.getUser().id),
       1
     );
     try {
@@ -136,7 +138,12 @@ export class ModalComponent {
     console.log('selected', this.category);
   }
   public isAdmin(): boolean {
-    return this.authService.isAdmin();
+    if (this.storageService.getUser().admin==true){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
 }

@@ -1,11 +1,14 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { User } from 'src/app/models/user;
+
 import { Comment } from 'src/app/Models/comment/comment.model';
 import { Forum } from 'src/app/Models/forum/forum.model';
-import { AuthService } from 'src/app/Services/auth.service';
+
 import { ForumService } from 'src/app/Services/forum.service';
+import {User} from "../../models/user";
+import {AuthService} from "../../services/auth.service";
+import {StorageService} from "../../services/storage.service";
 
 @Component({
   selector: 'app-topic',
@@ -44,7 +47,8 @@ export class TopicComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private forumService: ForumService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private storageService:StorageService
   ) {}
 
   ngOnInit(): void {
@@ -56,7 +60,7 @@ export class TopicComponent implements OnInit {
         this.comments = this.forum.getFeedbacks();
       });
     });
-    this.user = this.authService.getUser();
+    this.user = this.storageService.getUser();
     this.title = this.forum.getTitle();
     this.description = this.forum.getDescription();
     this.category = this.forum.getCategory();
@@ -224,7 +228,7 @@ if (idUsersDisLikesString) {
       maxIDcomment + 1,
       comment,
       'neutral',
-      this.user.getId(),
+      this.user.id,
       Number(this.forum.getId()),
       new Date(),
       new Date(),
@@ -248,7 +252,7 @@ if (idUsersDisLikesString) {
 
   public deleteComment(comment: Comment) {
     this.feedback=comment;
-   if (this.user.getId()==this.feedback.getAuthorId()){
+   if (this.user.id==this.feedback.getAuthorId()){
     this.forumService.deleteCommentFromServer(this.forum, comment).then(() => {
       this.snackbar.open('Comment deleted', 'Close', {
         horizontalPosition: 'center',
@@ -262,11 +266,11 @@ if (idUsersDisLikesString) {
 
   public like() {
     //  localStorage.clear();
-      if (!this.idUsersLikes.includes(this.user.getId()) ){
+      if (!this.idUsersLikes.includes(this.user.id) ){
         // this.forumService.unDislikeForum(this.forum);
-        this.idUsersDisLikes = this.idUsersDisLikes.filter(userId => userId !== this.user.getId());
+        this.idUsersDisLikes = this.idUsersDisLikes.filter(userId => userId !== this.user.id);
       this.forumService.likeForum(this.forum);
-      this.idUsersLikes.push(this.user.getId());
+      this.idUsersLikes.push(this.user.id);
       this.isClickedDisLike=false;
       this.isClickedLike=true;
       // Saving the isclicked state to localStorage
@@ -291,10 +295,10 @@ if (idUsersDisLikesString) {
   }
   public dislike() {
 
-      if (!this.idUsersDisLikes.includes(this.user.getId())){
-          this.idUsersLikes = this.idUsersLikes.filter(userId => userId !== this.user.getId());
+      if (!this.idUsersDisLikes.includes(this.user.id)){
+          this.idUsersLikes = this.idUsersLikes.filter(userId => userId !== this.user.id);
    this.forumService.dislikeForum(this.forum);
-   this.idUsersDisLikes.push(this.user.getId());
+   this.idUsersDisLikes.push(this.user.id);
    this.isClickedDisLike=true;
    this.isClickedLike=false;
    // Saving the isclicked state to localStorage
@@ -315,11 +319,11 @@ public likeComment(comment:Comment) {
 
   //  localStorage.clear();
 
-  if (!this.idUsersLikesComment.includes(this.user.getId())){
+  if (!this.idUsersLikesComment.includes(this.user.id)){
     // this.forumService.unDislikeForum(this.forum);
-    this.idUsersDisLikesComment = this.idUsersDisLikesComment.filter(userId => userId !== this.user.getId());
+    this.idUsersDisLikesComment = this.idUsersDisLikesComment.filter(userId => userId !== this.user.id);
   this.forumService.likeComment(comment);
-  this.idUsersLikesComment.push(this.user.getId());
+  this.idUsersLikesComment.push(this.user.id);
   this.isClickedDisLikeComment=false;
   this.isClickedLikeComment=true;
   // Saving the isclicked state to localStorage
@@ -350,10 +354,10 @@ public likeComment(comment:Comment) {
 
 
 public dislikeComment(comment:Comment) {
-  if (!this.idUsersDisLikesComment.includes(this.user.getId()) && !this.idCommentS.includes(comment.getId())){
-        this.idUsersLikesComment = this.idUsersLikesComment.filter(userId => userId !== this.user.getId());
+  if (!this.idUsersDisLikesComment.includes(this.user.id) && !this.idCommentS.includes(comment.getId())){
+        this.idUsersLikesComment = this.idUsersLikesComment.filter(userId => userId !== this.user.id);
  this.forumService.DislikeComment(comment);
- this.idUsersDisLikesComment.push(this.user.getId());
+ this.idUsersDisLikesComment.push(this.user.id);
  this.idCommentS.push(comment.getId());
  this.isClickedDisLikeComment=true;
  this.isClickedLikeComment=false;
@@ -392,16 +396,21 @@ localStorage.setItem('idCommentS', JSON.stringify(this.idCommentS));
   }
 
   public isAdmin(): boolean {
-    return this.authService.isAdmin();
+    if (this.storageService.getUser().admin==true){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   public changeComment(feedback:Comment){
-    console.log(this.user.getId())
+    console.log(this.user.id)
 
     this.feedback=feedback;
     console.log("hello",this.feedback.getAuthorId())
     console.log()
-    if (this.user.getId()==this.feedback.getAuthorId()){
+    if (this.user.id==this.feedback.getAuthorId()){
       this.ischangeComment=true;
     }
     this.isChangeForum=false;

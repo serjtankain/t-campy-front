@@ -2,7 +2,8 @@ import { Component, Injector } from '@angular/core';
 import { Forum } from '../../Models/forum/forum.model';
 import { ForumService } from 'src/app/Services/forum.service';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { AuthService } from 'src/app/Services/auth.service';
+import {StorageService} from "../../services/storage.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-questions-list',
@@ -17,7 +18,7 @@ export class QuestionsListComponent {
   forums!: Forum[];
   Status: string = 'all';
 
-  constructor(private forumService: ForumService,private authService:AuthService) {}
+  constructor(private forumService: ForumService,private authService:AuthService,private storageService:StorageService) {}
 
   ngOnInit(): void {
     this.forumService.countOpenedForums().then((number) => {
@@ -35,7 +36,7 @@ export class QuestionsListComponent {
     this.forumService.fetchForumsFromServer().then((Forums) => {
       this.forums = Forums;
     });
-    
+
   }
 
   sort($event: any) {
@@ -46,16 +47,16 @@ export class QuestionsListComponent {
             new Date(b.getCreationDate()).getTime() -
             new Date(a.getCreationDate()).getTime()
           );
-          
+
         });
-        
-      
+
+
     } else if (this.Status === 'popular') {
-      
+
         this.forums.sort((a, b) => {
         return b.getLikes() - a.getLikes();
       });
-    
+
     } else if (this.Status === 'unanswered') {
       this.forumService.fetchForumsFromServer().then((forums) => {
         this.forums = forums;
@@ -63,7 +64,7 @@ export class QuestionsListComponent {
        this.forums.filter(
         (forum) => forum.getFeedbacks().length === 0
       );
-       
+
     } else {
       this.forumService.fetchForumsFromServer().then((forums) => {
         return (forums as Forum[]) ? forums : [];
@@ -95,6 +96,11 @@ export class QuestionsListComponent {
     return this.forums ? this.forums : [];
   }
   public isAdmin(): boolean {
-    return this.authService.isAdmin();
+    if (this.storageService.getUser().admin==true){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }

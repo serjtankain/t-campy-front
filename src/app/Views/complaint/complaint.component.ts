@@ -3,8 +3,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Complaint } from 'src/app/Models/Complaint/complaint';
 import { User } from 'src/app/Models/User/user';
-import { AuthService } from 'src/app/Services/auth.service';
+
 import { ComplaintService } from 'src/app/Services/complaint.service';
+import {AuthService} from "../../services/auth.service";
+import {StorageService} from "../../services/storage.service";
 
 @Component({
   selector: 'app-complaint',
@@ -28,7 +30,8 @@ export class ComplaintComponent {
     private router: Router,
     private authService: AuthService,
     private complaintService: ComplaintService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private storageService:StorageService
   ) {}
 
   ngOnInit(): void {
@@ -40,8 +43,8 @@ export class ComplaintComponent {
           this.complaint = complaint;
         });
     });
-    this.user = this.authService.getUser();
-    if (!this.user.isAdmin() || this.complaint.user_id != this.user.getId()) {
+    this.user = this.storageService.getUser();
+    if (!this.user.admin || this.complaint.user_id != this.user.id) {
       this.router.navigate(['/']);
     } else if (!this.complaint) {
       this.router.navigate(['/admin']);

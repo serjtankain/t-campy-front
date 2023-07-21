@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Complaint } from '../Models/Complaint/complaint';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from './auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +25,7 @@ export class ComplaintService {
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Forum } from '../Models/forum/forum.model';
 import { Comment } from '../Models/comment/comment.model';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from './auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Camping } from '../Models/Camping/camping';
 import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root',
@@ -28,8 +28,8 @@ export class ForumService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private authService: AuthService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +44,6 @@ export class ForumService {
     return new ForumService(
       this.http,
       this.router,
-      this.authService,
       this.snackbar
     );
   }
@@ -267,7 +266,7 @@ export class ForumService {
     return this.Categories;
   }
 
-  
+
 
 
   public async getClosedForums(): Promise<Forum[]> {
@@ -282,10 +281,10 @@ export class ForumService {
   //   );
   //   this.refreshPage();
   // }
- 
- 
-  
-  
+
+
+
+
   public  likeForum(forum: Forum) {
     try {
        this.http
@@ -295,7 +294,7 @@ export class ForumService {
         )
         .subscribe((data) => {
           this.fetchForumsFromServer();
-          
+
         });
     } catch (error) {
       console.log(error);
@@ -337,7 +336,7 @@ export class ForumService {
         )
         .subscribe((data) => {
           this.fetchForumsFromServer();
-          
+
         });
     } catch (error) {
       console.log(error);
@@ -359,7 +358,7 @@ export class ForumService {
         )
         .subscribe((data) => {
           this.fetchForumsFromServer();
-          
+
         });
     } catch (error) {
       console.log(error);

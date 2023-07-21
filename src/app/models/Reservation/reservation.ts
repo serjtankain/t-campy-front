@@ -1,5 +1,6 @@
 import { Camping } from '../Camping/camping';
-import { User } from '../User/user';
+import {User} from "src/app/models/user";
+
 
 export class Reservation {
   private id: number;
