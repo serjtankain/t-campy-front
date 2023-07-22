@@ -5,6 +5,8 @@ import { GroupService } from 'src/app/services/group.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddGroupComponent } from '../../add-Group/add-group/add-group.component';
 import { AddOffreComponent } from 'src/app/components/offres-management/add-offre/add-offre.component';
+import { StorageService } from 'src/app/services/storage.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-list-group',
@@ -14,15 +16,32 @@ import { AddOffreComponent } from 'src/app/components/offres-management/add-offr
 export class ListGroupComponent implements OnInit {
 listGroup:Group[]= [];
 groupId!:number
+private roles: string[] = [];
+isLoggedIn = false;
+showAdminBoard = false;
+showModeratorBoard = false;
+username?: string;
   constructor(private groupeService:GroupService,
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog,
-    ) { }
+    private storageService: StorageService, private authService: AuthService) {
+    }
 
   ngOnInit(): void {
     this.groupId=this.route.snapshot.params['groupId'];
     this.getGroups();
+    this.isLoggedIn = this.storageService.isLoggedIn();
+
+    if (this.isLoggedIn) {
+      const user = this.storageService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+
+      this.username = user.username;
+    }
   }
   openAddGroupDialog(): void {
     const dialogRef = this.dialog.open(AddGroupComponent, {

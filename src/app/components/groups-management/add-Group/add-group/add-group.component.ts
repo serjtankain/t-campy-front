@@ -5,6 +5,8 @@ import { Group } from 'src/app/models/group';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Location } from '@angular/common';
+import { StorageService } from 'src/app/services/storage.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -15,22 +17,26 @@ import { Location } from '@angular/common';
 export class AddGroupComponent implements OnInit {
   group:Group = new Group();
   groupForm!: FormGroup;
-
+  private roles: string[] = [];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username?: string;
   constructor(private groupService:GroupService,
     private router :Router,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<AddGroupComponent>,
-  private location: Location) {
+  private location: Location,
+  private storageService: StorageService, private authService: AuthService) {
 
     }
 
-  ngOnInit(): void {
-    // this.groupForm = this.formBuilder.group({
-    //   name: ['', Validators.required],
-    //   // activities: this.formBuilder.array([])
-    // });
 
-  }
+
+
+    ngOnInit(): void {
+      
+    }
   addGroup(){
 
     console.log(this.group);
@@ -41,7 +47,8 @@ export class AddGroupComponent implements OnInit {
     this.groupService.addGroup(this.group).subscribe(
       {
         next: () =>{ this.router.navigate(['groups'])
-        this.dialogRef.close(); 
+        this.dialogRef.close();
+        window.location.reload();
       },
       }
     )

@@ -38,6 +38,7 @@ export class UpdateGroupComponent implements OnInit {
           console.log(data);
 
           this.gotoList();
+          window.location.reload();
         }, error => console.log(error));
     }
     // deleteActivity(index: number) {

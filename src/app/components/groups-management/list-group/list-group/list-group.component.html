@@ -1,5 +1,5 @@
 <div class="container mt-4 ">
-  <button class="button" (click)="openAddGroupDialog()">
+  <button class="button" (click)="openAddGroupDialog()" *ngIf="isLoggedIn">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" class="svg-icon"><g stroke-width="2" stroke-linecap="round" stroke="#fff"><rect y="5" x="4" width="16" rx="2" height="16"></rect><path d="m8 3v4"></path><path d="m16 3v4"></path><path d="m4 11h16"></path></g></svg>
         <span class="lable">Add New Group</span>
       </button>
@@ -14,11 +14,11 @@
         <p class="card-text">Activity Name : {{i.name}}</p>
         <p class="card-text" style="margin: -10pt 0 3pt 0;">Activity Description: {{i.description}}</p>
       </div>
-      <button (click)="deleteGroup(g.id)" class="btn btn-danger" style="margin-left: 10pt">Delete</button>
-      <button (click)="updateGroup(g.id)" class="btn btn-info" style="margin-left: 60pt">Update</button>
+      <button (click)="deleteGroup(g.id)" class="btn btn-danger" style="margin-left: 10pt" *ngIf="isLoggedIn">Delete</button>
+      <button (click)="updateGroup(g.id)" class="btn btn-info" style="margin-left: 60pt" *ngIf="isLoggedIn">Update</button>
       <!-- <button (click)="groupDetails(g.id)" class="btn btn-info" style="margin-left: 10px">Details</button> -->
 
-        <button class="btn btn-primary button1" (click)="openAddOffreDialog(g.id)" >Add Offre</button>
+        <button class="btn btn-primary button1" (click)="openAddOffreDialog(g.id)"*ngIf="isLoggedIn" >Add Offre</button>
 
 
 
