@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {product} from "../../../models/product";
+import {ServiceproductService} from "../product/serviceproduct.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-homeshop',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeshopComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private productService: ServiceproductService,private router:Router) {
   }
 
+  listProduits!: product[];
+
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe({
+      next: (data) =>
+
+        this.listProduits = data
+    })
+    console.log("eee", this.listProduits)
+  }
+  test(e:any){
+    console.log(e,'eeeeee')
+    this.router.navigate(['Details/'+e.id]);
+  }
+
+  clickroute(e:any) {
+    this.router.navigate(['Details-Product']);
+  }
 }

@@ -21,7 +21,9 @@ export class ProductComponent implements OnInit{
   getproduct (){
     this.productservice.getProductById(this.id).subscribe({
       next:(data)=>this.product=data
+
     })
+    console.log(this.product)
   }
 
   setProduct(product : product) {
