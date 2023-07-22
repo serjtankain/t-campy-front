@@ -7,7 +7,7 @@
   <div class="container px-4 px-lg-5 mt-5">
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
       <!-- *ngFor loop -->
-      <div class="col mb-5" *ngFor="let item of llistprod">
+      <div class="col mb-5" *ngFor="let item of listprod">
         <div class="card h-100" *ngIf="item.category === 'clothes'">
           <!-- Product image-->
           <img class="card-img-top" src={{item.photo}} alt="..." />
