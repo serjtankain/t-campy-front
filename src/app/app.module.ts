@@ -45,6 +45,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AddProductComponent } from './components/shop/add-product/add-product.component';
 import {MatTabsModule} from "@angular/material/tabs";
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { CampManagementComponent } from './components/camp-management/camp-management.component';
+import { CamingCardFormDialogComponent } from "./components/caming-card-form-dialog/caming-card-form-dialog.component";
 
 //   return () =>
 //    kcService.init({
@@ -94,7 +97,10 @@ import {MatTabsModule} from "@angular/material/tabs";
    BoardModeratorComponent,
    BoardUserComponent,
    ProductComponent,
-   AddProductComponent
+   AddProductComponent,
+   AboutUsComponent,
+   CampManagementComponent,
+   CamingCardFormDialogComponent
 
 
 

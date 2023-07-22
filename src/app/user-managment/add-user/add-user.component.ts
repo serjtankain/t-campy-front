@@ -20,7 +20,7 @@ export class AddUserComponent implements OnInit {
   constructor(private userservice:UserService,
    private router : Router,
    private dialogRef: MatDialogRef<AddUserComponent>,
-   private formBuilder: FormBuilder ) { 
+   private formBuilder: FormBuilder ) {
     this.userForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3}')]],
@@ -31,13 +31,13 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit(): void {
   }
- 
+
   addUser() {
     this.userservice.createUser(this.user).subscribe(
       (response: User) => {
         // Close the popup after successful user creation
         this.dialogRef.close();
-  
+
         // Add the new user to the table data
       },
       (error: any) => {
@@ -46,8 +46,8 @@ export class AddUserComponent implements OnInit {
       }
     );
   }
-  
-  
+
+
 
 }
 

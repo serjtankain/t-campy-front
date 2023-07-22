@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 import { AuthService } from '../services/auth.service';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -15,7 +16,7 @@ export class NavbarComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
 
-  constructor(private storageService: StorageService, private authService: AuthService) { }
+  constructor(private router: Router,private storageService: StorageService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.storageService.isLoggedIn();

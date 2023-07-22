@@ -29,7 +29,7 @@ showPassword: { [userId: number]: boolean } = {}; // Track password visibility p
     });
   }
 
-  
+
 
   ngOnInit(): void {
     this.AfficheUser();
@@ -45,8 +45,8 @@ showPassword: { [userId: number]: boolean } = {}; // Track password visibility p
 
   removeUsers(id: any) {
 
-  
-  
+
+
 
     this.userService.deleteUser(id).subscribe(
       (Response) => {
@@ -55,14 +55,14 @@ showPassword: { [userId: number]: boolean } = {}; // Track password visibility p
         height: '200',
         width: '300',
         data: { type: "user" },
-  
+
       });
-    
+
       dialogRef.afterClosed().subscribe(() => {
         this.listUsers = this.listUsers.filter(
           (user) => user.id != id
         );
-        this.listUsers = [...this.listUsers];  
+        this.listUsers = [...this.listUsers];
       });
     },
     (error: HttpErrorResponse) => {
@@ -79,6 +79,6 @@ showPassword: { [userId: number]: boolean } = {}; // Track password visibility p
   addoffre(){
     this.router.navigate(['/offers']);
   }
-  
+
 }
 

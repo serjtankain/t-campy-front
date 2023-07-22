@@ -25,8 +25,10 @@ import { BoardModeratorComponent } from './components/board-moderator/board-mode
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { AddProductComponent } from './components/shop/add-product/add-product.component';
 import {HomeComponent} from "./components/home/home.component";
+import {AboutUsComponent} from "./components/about-us/about-us.component";
+import {CampManagementComponent} from "./components/camp-management/camp-management.component";
 const routes: Routes = [
-  {path: '', redirectTo:'home',pathMatch:'full'},
+  {path: '', redirectTo:'',pathMatch:'full'},
   {path: 'groups', component:ListGroupComponent},
   {path: 'home', component:HomeComponent},
   {path: 'addGroup', component:AddGroupComponent},
@@ -50,7 +52,10 @@ const routes: Routes = [
   {path: 'Produit',component:ProductComponent},
   {path:'Shop',component:ShopyComponent},
   {path:"pop",component:PopComponent},
-  {path:'add-produit',component:AddProductComponent}
+  {path:'add-produit',component:AddProductComponent},
+  {path:'about',component:AboutUsComponent},
+  {path:'camp',component:CampManagementComponent},
+
   //{path: '**',component:ListGroupComponent}
 ];
 

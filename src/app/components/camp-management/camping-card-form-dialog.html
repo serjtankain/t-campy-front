@@ -1,0 +1,26 @@
+<!-- camping-card-form-dialog.html -->
+
+<h2 mat-dialog-title>Add Camping Card</h2>
+<mat-dialog-content>
+  <form #form="ngForm">
+    <mat-form-field>
+      <input matInput placeholder="Place to Visit" name="placeToVisit" [(ngModel)]="data.placeToVisit" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Number of Group Members" type="number" name="numOfGroupMembers" [(ngModel)]="data.numOfGroupMembers" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Image URL" name="image" [(ngModel)]="data.image" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Description" name="description" [(ngModel)]="data.description" required></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" [disabled]="!form.valid">Add Card</button>
+</mat-dialog-actions>
