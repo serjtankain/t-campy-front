@@ -24,6 +24,7 @@ import { BoardUserComponent } from './components/board-user/board-user.component
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { AddProductComponent } from './components/shop/add-product/add-product.component';
+import { ErrorComponent } from './error/error.component';
 const routes: Routes = [
   {path: '', redirectTo:'login',pathMatch:'full'},
   {path: 'groups', component:ListGroupComponent},
@@ -48,8 +49,8 @@ const routes: Routes = [
   {path: 'Produit',component:ProductComponent},
   {path:'Shop',component:ShopyComponent},
   {path:"pop",component:PopComponent},
-  {path:'add-produit',component:AddProductComponent}
-  // {path: '**',component:ListGroupComponent}
+  {path:'add-produit',component:AddProductComponent},
+  {path: '**',component:ErrorComponent}
 ];
 
 @NgModule({

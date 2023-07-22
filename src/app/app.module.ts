@@ -44,6 +44,7 @@ import { BoardUserComponent } from './components/board-user/board-user.component
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AddProductComponent } from './components/shop/add-product/add-product.component';
+import { ErrorComponent } from './error/error.component';
 
 //   return () =>
 //    kcService.init({
@@ -93,7 +94,8 @@ import { AddProductComponent } from './components/shop/add-product/add-product.c
    BoardModeratorComponent,
    BoardUserComponent,
    ProductComponent,
-   AddProductComponent
+   AddProductComponent,
+   ErrorComponent
 
 
 
