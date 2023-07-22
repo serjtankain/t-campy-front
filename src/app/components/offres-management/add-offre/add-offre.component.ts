@@ -57,7 +57,8 @@ export class AddOffreComponent implements OnInit {
     this.groupService.addOffreToGroup(this.groupId, this.offre).subscribe(
       (response) => {
         console.log('Offre added successfully')
-        this.dialogRef.close(); 
+        this.dialogRef.close();
+        window.location.reload();
         this.router.navigate(['groups'])
         // Navigate back to the group list or perform any other necessary actions
       },

@@ -29,12 +29,13 @@ export class UpdateOffreComponent implements OnInit {
     }
 
     updateOffre() {
-      
+
       this.offreService.updateOffre( this.offre)
         .subscribe(data => {
           console.log(data);
 
           this.gotoList();
+          window.location.reload();
         });
     }
 
