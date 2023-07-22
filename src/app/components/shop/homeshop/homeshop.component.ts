@@ -28,7 +28,7 @@ export class HomeshopComponent implements OnInit {
     this.router.navigate(['Details/'+e.id]);
   }
 
-  clickroute() {
+  clickroute(e:any) {
     this.router.navigate(['Details-Product']);
   }
 }

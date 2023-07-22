@@ -20,5 +20,7 @@ export class DetailProductComponent implements OnInit {
         this.productdata = data
     })
   }
-
+  clickroute(e:any) {
+    this.router.navigate(['Orders']);
+  }
 }

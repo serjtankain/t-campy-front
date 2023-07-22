@@ -28,5 +28,9 @@ export class ServiceproductService {
     const params = new HttpParams().set('id', id);
     return this.http.get<product>(this.baseUrl+"retrieve-Produit/"+id);
   }
+getProduitByCathegory(category:string){
+  return this.http.get<product[]>(this.baseUrl+"retrieve-ProduitByCategory/"+category);
+}
+
 
 }
