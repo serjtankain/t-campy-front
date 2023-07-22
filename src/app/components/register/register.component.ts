@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
      
         this.isSuccessful = true
-        setTimeout(() => {
+         setTimeout(() => {
           this.router.navigate(['/login']);
         }, 3000);
 

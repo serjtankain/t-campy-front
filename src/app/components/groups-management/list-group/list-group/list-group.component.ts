@@ -92,7 +92,7 @@ private roles: string[] = [];
     this.router.navigate(['groups', groupId,'offre']);
   }
   goTo(){
-    this.router.navigate(['addGroup' ]);
+     this.router.navigate(['addGroup' ]);
   }
 
 }
