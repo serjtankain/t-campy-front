@@ -15,7 +15,7 @@ export class ProductService {
     return this.http.get(this.produrl+'/retrieve-all-Products')
   }  
   addProductToCart(product:product):Observable<any>{    
-      const url = `${this.produrl}/add-product-tocart`;
+      const url = `${this.produrl}/add-product-to-cart`;
       return this.http.post(url, product);
   }
   }

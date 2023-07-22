@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProductComponent implements OnInit {
 
-  listprod:product[]=[];
+  /*listprod:product[]=[];*/
   llistprod: product[] = [
     {
       id: 1,
@@ -43,8 +43,8 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
   }
   getproduit(){
-    return this.produitservice.getProducts().subscribe(product=> {this.listprod=product
-    console.log(this.listprod)
+    return this.produitservice.getProducts().subscribe(product=> {this.llistprod=product
+    console.log(this.llistprod)
     })
   }
     addProductToCart(product: product): void {

@@ -23,7 +23,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
-import { HomeComponent } from './components/home/home.component';
 const routes: Routes = [
   {path: '', redirectTo:'login',pathMatch:'full'},
   {path: 'groups', component:ListGroupComponent},
@@ -48,8 +47,7 @@ const routes: Routes = [
   {path: 'Produit',component:ProductComponent},
   {path:'Shop',component:ShopyComponent},
   {path:"pop",component:PopComponent},
-  {path:"home",component:HomeComponent}
-
+  {path:'add-produit',component:AddProductComponent}
   // {path: '**',component:ListGroupComponent}
 ];
 
