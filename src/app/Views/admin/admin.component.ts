@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Complaint } from 'src/app/Models/Complaint/complaint';
-import { User } from 'src/app/Models/User/user';
-import { AuthService } from 'src/app/Services/auth.service';
-import { ComplaintService } from 'src/app/Services/complaint.service';
-import { UserService } from 'src/app/Services/user.service';
+
+import { User } from 'src/app/models/user';
+
+import { ComplaintService } from 'src/app/services/complaint.service';
+import {AuthService} from "../../services/auth.service";
+import {UserService} from "../../services/user.service";
+import {StorageService} from "../../services/storage.service";
+import {Complaint} from "../../models/Complaint/complaint";
+
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +16,7 @@ import { UserService } from 'src/app/Services/user.service';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent {
-  currentUser = this.authService.getUser();
+  currentUser = this.storageService.getUser();
   user!: User;
   route: string = this.router.url;
   view: string = 'dashboard';
@@ -23,9 +27,10 @@ export class AdminComponent {
     private authService: AuthService,
     private router: Router,
     private userService: UserService,
-    private complaintService: ComplaintService
+    private complaintService: ComplaintService,
+    private storageService:StorageService
   ) {
-    if (this.userService.isAdmin()) {
+    if (this.storageService.getUser().admin==true) {
       this.router.navigate(['/admin']);
     } else {
       this.router.navigate(['/']);
@@ -34,8 +39,8 @@ export class AdminComponent {
   }
 
   ngOnInit() {
-    this.user = this.authService.getUser();
-    console.log(this.user.getUsername());
+    this.user = this.storageService.getUser();
+    console.log(this.user.username);
     console.log('route', this.route);
     this.complaintService.fetchComplaintsFromServer().then((complaints) => {
       this.complaints = complaints;

@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
-import { Forum } from '../../Models/forum/forum.model';
-import { ForumService } from 'src/app/Services/forum.service';
+import { Forum } from '../../models/forum/forum.model';
+import { ForumService } from 'src/app/services/forum.service';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import {StorageService} from "../../services/storage.service";
 import {AuthService} from "../../services/auth.service";

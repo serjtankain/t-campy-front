@@ -17,7 +17,7 @@ import { UpdateOffreComponent } from './components/offres-management/update-offr
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
-import { AdminComponent } from './components/admin/admin.component';
+import { AdminComponent } from './Views/admin/admin.component';
 import {UserManagmentComponent} from "./user-managment/user-managment.component";
 import {AddUserComponent} from "./user-managment/add-user/add-user.component";
 import {ListUserComponent} from "./user-managment/list-user/list-user.component";
@@ -48,6 +48,17 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatBadgeModule} from "@angular/material/badge";
 import {LoadingInterceptor} from "./Interceptors/loading.interceptor";
+import {ComplaintComponent} from "./Views/complaint/complaint.component";
+import {ChatCardComponent} from "./components/Utils/chat-card/chat-card.component";
+import {ModalComponent} from "./components/modal/modal.component";
+import {SidebarComponent} from "./components/sidebar/sidebar.component";
+import {RightSectionComponent} from "./components/right-section/right-section.component";
+import {ForumComponent} from "./Views/forum/forum.component";
+import {TopicPillComponent} from "./components/Utils/topic-pill/topic-pill.component";
+import {TopicComponent} from "./Views/topic/topic.component";
+import {ErrorComponent} from "./Views/error/error.component";
+import {PopupComponent} from "./components/popup/popup.component";
+import {SpinnerComponent} from "./components/spinner/spinner.component";
 
 
 @NgModule({
@@ -92,7 +103,29 @@ import {LoadingInterceptor} from "./Interceptors/loading.interceptor";
     BoardUserComponent,
     ProductComponent,
     AddProductComponent,
-    QuestionsListComponent
+    QuestionsListComponent,
+    ComplaintComponent,
+    ChatCardComponent,
+    AdminComponent,
+    ModalComponent,
+    AppComponent,
+    ForumComponent,
+    HomeComponent,
+    NavbarComponent,
+    SidebarComponent,
+    QuestionsListComponent,
+    RightSectionComponent,
+    ChatCardComponent,
+    TopicPillComponent,
+    TopicComponent,
+    AdminComponent,
+    LoginComponent,
+    RegisterComponent,
+    ErrorComponent,
+    PopupComponent,
+    ModalComponent,
+    ComplaintComponent,
+    SpinnerComponent,
 
   ],
   imports: [
@@ -118,6 +151,8 @@ import {LoadingInterceptor} from "./Interceptors/loading.interceptor";
     MatMenuModule,
     MatSnackBarModule,
     MatBadgeModule,
+
+
   ],
   // providers: [
   //

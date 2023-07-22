@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Forum } from 'src/app/Models/forum/forum.model';
-import { AuthService } from 'src/app/Services/auth.service';
-import { ForumService } from 'src/app/Services/forum.service';
+import { Forum } from 'src/app/models/forum/forum.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { ForumService } from 'src/app/services/forum.service';
+import {StorageService} from "../../services/storage.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -14,7 +15,8 @@ export class SidebarComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private forumService: ForumService
+    private forumService: ForumService,
+    private storageService:StorageService
   ) {}
 
   ngOnInit() {
@@ -23,7 +25,12 @@ export class SidebarComponent {
   }
 
   public isAdmin(): boolean {
-    return this.authService.isAdmin();
+    if (this.storageService.getUser().admin==true){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   public getCategories(): string[] {

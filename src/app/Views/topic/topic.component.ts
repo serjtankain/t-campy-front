@@ -2,10 +2,10 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { Comment } from 'src/app/Models/comment/comment.model';
-import { Forum } from 'src/app/Models/forum/forum.model';
+import { Comment } from 'src/app/models/comment/comment.model'
+import { Forum } from 'src/app/models/forum/forum.model';
 
-import { ForumService } from 'src/app/Services/forum.service';
+import { ForumService } from 'src/app/services/forum.service';
 import {User} from "../../models/user";
 import {AuthService} from "../../services/auth.service";
 import {StorageService} from "../../services/storage.service";

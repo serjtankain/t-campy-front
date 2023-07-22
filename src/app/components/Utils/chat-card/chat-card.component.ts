@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Forum } from '../../../Models/forum/forum.model';
+import { Forum } from '../../../models/forum/forum.model';
 
 @Component({
   selector: 'app-chat-card',

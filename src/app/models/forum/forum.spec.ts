@@ -1,4 +1,6 @@
-import { Forum } from './Forum';
+import {Forum} from "./forum.model";
+
+
 
 describe('User', () => {
   it('should create an instance', () => {

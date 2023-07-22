@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Camping } from 'src/app/Models/Camping/camping';
-import { Complaint } from 'src/app/Models/Complaint/complaint';
-import { Forum } from 'src/app/Models/forum/forum.model';
-import { ComplaintService } from 'src/app/Services/complaint.service';
-import { ForumService } from 'src/app/Services/forum.service';
+import { Complaint } from 'src/app/models/Complaint/complaint';
+import { Forum } from 'src/app/models/forum/forum.model';
+import { ComplaintService } from 'src/app/services/complaint.service';
+import { ForumService } from 'src/app/services/forum.service';
 import {StorageService} from "../../services/storage.service";
 import {AuthService} from "../../services/auth.service";
 

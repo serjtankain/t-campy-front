@@ -1,12 +1,14 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Complaint } from 'src/app/Models/Complaint/complaint';
-import { User } from 'src/app/Models/User/user';
 
-import { ComplaintService } from 'src/app/Services/complaint.service';
+import { User } from 'src/app/models/user';
+
+import { ComplaintService } from 'src/app/services/complaint.service';
 import {AuthService} from "../../services/auth.service";
 import {StorageService} from "../../services/storage.service";
+import {Complaint} from "../../models/Complaint/complaint";
+
 
 @Component({
   selector: 'app-complaint',
@@ -31,8 +33,9 @@ export class ComplaintComponent {
     private authService: AuthService,
     private complaintService: ComplaintService,
     private snackBar: MatSnackBar,
-    private storageService:StorageService
-  ) {}
+    private storageService: StorageService
+  ) {
+  }
 
   ngOnInit(): void {
     this.sub = this.activatedRoute.params.subscribe((params: Params) => {
@@ -71,5 +74,13 @@ export class ComplaintComponent {
       });
     }
     this.reply = '';
+  }
+
+  public isAdmin(): boolean {
+    if (this.storageService.getUser().admin == true) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

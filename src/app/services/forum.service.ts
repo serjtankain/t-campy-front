@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Forum } from '../Models/forum/forum.model';
-import { Comment } from '../Models/comment/comment.model';
+import { Forum } from '../models/forum/forum.model';
+import { Comment } from '../models/comment/comment.model';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Camping } from '../Models/Camping/camping';
 import { Router } from '@angular/router';
 
 

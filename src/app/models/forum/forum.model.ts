@@ -1,4 +1,4 @@
-import { Camping } from '../Camping/camping';
+import { Camping } from '../camping';
 import { Complaint } from '../Complaint/complaint';
 import { Comment } from '../comment/comment.model';
 export class Forum {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Complaint } from '../Models/Complaint/complaint';
+import { Complaint } from 'src/app/models/Complaint/complaint';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
